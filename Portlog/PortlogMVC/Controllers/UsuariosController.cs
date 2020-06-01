@@ -49,7 +49,9 @@ namespace PortlogMVC.Controllers
             // GET: Usuarios
             public ActionResult Index()
         {
-            return View();
+            IEnumerable<Usuario> usuarios = repo.FindAll();
+
+            return View(usuarios);
         }
 
         // GET: Usuarios/Details/5
@@ -73,9 +75,7 @@ namespace PortlogMVC.Controllers
             return View();
         }
 
-        // POST: Usuarios/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Usuario usuario)

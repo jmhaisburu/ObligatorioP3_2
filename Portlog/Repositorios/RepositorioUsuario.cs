@@ -30,7 +30,8 @@ namespace Repositorios
 
         public IEnumerable<Usuario> FindAll()
         {
-            throw new NotImplementedException();
+            IEnumerable<Usuario> usuarios = db.Usuarios;
+            return usuarios;
         }
 
         public Usuario FindById(object Id)

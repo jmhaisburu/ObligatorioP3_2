@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PortlogDominio.EntidadesNegocio.Usuario>
+﻿@model IEnumerable <PortlogDominio.EntidadesNegocio.Usuario> 
 
 @{
     ViewBag.Title = "Index";
@@ -9,29 +9,28 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Rol)
+            Cedula
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pass)
+           Rol
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var tmpUsuario in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Rol)
+            @tmpUsuario.Ci
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Pass)
+            @tmpUsuario.Rol
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Ci }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Ci }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Ci })
+
         </td>
     </tr>
 }
