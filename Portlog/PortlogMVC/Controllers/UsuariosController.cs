@@ -49,7 +49,8 @@ namespace PortlogMVC.Controllers
             // GET: Usuarios
             public ActionResult Index()
         {
-            return View();
+            IEnumerable<Usuario> usuarios = repo.FindAll();
+            return View(usuarios);
         }
 
         // GET: Usuarios/Details/5
