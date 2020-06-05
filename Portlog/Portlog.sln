@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorios", "Repositorio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortlogMVC", "PortlogMVC\PortlogMVC.csproj", "{A1714506-4BB9-44C1-A063-22771BB62254}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilidadesArchivos", "UtilidadesArchivos\UtilidadesArchivos.csproj", "{4B7FF847-BCAB-44E8-A7C0-115A5895A0A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A1714506-4BB9-44C1-A063-22771BB62254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1714506-4BB9-44C1-A063-22771BB62254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1714506-4BB9-44C1-A063-22771BB62254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7FF847-BCAB-44E8-A7C0-115A5895A0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7FF847-BCAB-44E8-A7C0-115A5895A0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7FF847-BCAB-44E8-A7C0-115A5895A0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7FF847-BCAB-44E8-A7C0-115A5895A0A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

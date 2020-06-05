@@ -9,11 +9,12 @@ using PortlogDominio.InterfacesRepositorios;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace Repositorios
 {
     public class RepositorioCliente : IRepositorio<Cliente>
     {
-        private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
+        private PortlogContext db = new PortlogContext();
 
         public bool Add(Cliente unObjeto)
         {
@@ -27,7 +28,11 @@ namespace Repositorios
 
         public Cliente FindById(object Id)
         {
-            throw new NotImplementedException();
+            String rut = (string)Id;
+
+            Cliente cli = db.Clientes.Find(rut);
+
+            return cli;
         }
 
         public bool Remove(object Id)
@@ -36,6 +41,11 @@ namespace Repositorios
         }
 
         public bool Update(Cliente unObjeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Cliente FindById()
         {
             throw new NotImplementedException();
         }
