@@ -30,7 +30,7 @@ namespace Repositorios
 
         public IEnumerable<Usuario> FindAll()
         {
-            IEnumerable<Usuario> usuarios = db.Usuarios;
+            IEnumerable<Usuario> usuarios = db.Usuarios.ToList(); //transformo la tabla en una lista
             return usuarios;
         }
 
