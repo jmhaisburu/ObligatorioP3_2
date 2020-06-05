@@ -13,6 +13,17 @@ namespace PortlogMVC.Controllers
             return View();
         }
 
+
+        public ActionResult ImportarArchivos()
+        {
+            UtilidadesArchivos.LeerArchivo.LeerProductoDesdeArchivo("ArchivosTxt","Productos","#");
+
+            return RedirectToAction("Index","Home");
+        }
+
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

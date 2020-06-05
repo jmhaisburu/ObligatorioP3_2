@@ -35,5 +35,10 @@ namespace PortlogDominio.EntidadesNegocio
             this.nombre = Nombre;
             this.stock = Stock;
         }*/
+
+        public bool Validar()
+        {
+            return true;
+        }
     }
 }
