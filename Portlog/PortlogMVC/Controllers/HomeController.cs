@@ -16,6 +16,7 @@ namespace PortlogMVC.Controllers
 
         public ActionResult ImportarArchivos()
         {
+            UtilidadesArchivos.LeerArchivo.LeerClienteDesdeArchivo("ArchivosTxt", "Clientes", "#");
             UtilidadesArchivos.LeerArchivo.LeerProductoDesdeArchivo("ArchivosTxt","Productos","#");
 
             return RedirectToAction("Index","Home");

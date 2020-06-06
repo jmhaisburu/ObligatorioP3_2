@@ -18,12 +18,16 @@ namespace Repositorios
 
         public bool Add(Cliente unObjeto)
         {
-            throw new NotImplementedException();
+            if (unObjeto != null && !unObjeto.Validar())
+                return false;
+            db.Clientes.Add(unObjeto);
+            db.SaveChanges();
+            return true;
         }
 
         public IEnumerable<Cliente> FindAll()
         {
-            throw new NotImplementedException();
+            return db.Clientes.ToList();
         }
 
         public Cliente FindById(object Id)
@@ -49,6 +53,8 @@ namespace Repositorios
         {
             throw new NotImplementedException();
         }
+
+        
 
         /*
                 public bool Add(Cliente unObjeto)

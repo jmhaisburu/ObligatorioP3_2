@@ -20,7 +20,8 @@ namespace Repositorios
         {
             if (pro != null && !pro.Validar())
                 return false;
-
+            Cliente cli = db.Clientes.Find(pro.Cliente.Rut);
+            pro.Cliente = cli;
             db.Productos.Add(pro);
             db.SaveChanges();
             return true;

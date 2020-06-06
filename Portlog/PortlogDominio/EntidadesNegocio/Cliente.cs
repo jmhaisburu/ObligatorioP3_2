@@ -18,6 +18,10 @@ namespace PortlogDominio.EntidadesNegocio
 
         #endregion
  
+        public bool Validar()
+        {
+            return true;
+        }
 
         
     }
