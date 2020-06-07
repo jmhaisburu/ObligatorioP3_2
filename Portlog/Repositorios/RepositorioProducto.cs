@@ -33,9 +33,11 @@ namespace Repositorios
 
         }
 
-        public Producto FindById(object Id)
+        public Producto FindById(object codProd)
         {
-            throw new NotImplementedException();
+            int codigo = (int)codProd;
+            Producto pro = db.Productos.Find(codigo);
+            return pro;
         }
 
         public bool Remove(object Id)

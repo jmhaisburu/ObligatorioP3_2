@@ -270,23 +270,25 @@ namespace UtilidadesArchivos
 
         private static Importacion LeerImportacion(string linea, string delimitador)
         {
-            RepositorioImportacion repoUsu = new RepositorioImportacion();
+           
+            RepositorioProducto repoPro = new RepositorioProducto();
             const int CANT_ATRIBUTOS = 3;
             if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
             {
                 string[] vector = linea.Split(delimitador.ToCharArray());
                 if (vector.Length == CANT_ATRIBUTOS)
                 {
-
+                    Producto pro = new Producto();
+                    pro = repoPro.FindById(int.Parse(vector[3]));
                     Importacion imp = new Importacion
                     {
-                        Id = vector[0],
-                        FechaIngreso = vector[1],
-                        SalidaPrevista = vector[2],
-                        Cantidad= vector[3],
-                        
+                        Id = int.Parse(vector[0]),
+                        FechaIngreso = DateTime.Parse(vector[1]),
+                        SalidaPrevista = DateTime.Parse(vector[2]),
+                        Producto = pro,
+                        Cantidad = int.Parse(vector[4])
                     };
-
+                
 
                     return imp;
                 }
