@@ -215,7 +215,7 @@ namespace UtilidadesArchivos
         private static Parametro LeerParametro(string linea, string delimitador)
         {
             RepositorioParametros repoParam = new RepositorioParametros();
-            const int CANT_ATRIBUTOS = 3;
+            const int CANT_ATRIBUTOS = 2;
             if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
             {
                 string[] vector = linea.Split(delimitador.ToCharArray());
@@ -272,7 +272,7 @@ namespace UtilidadesArchivos
         {
            
             RepositorioProducto repoPro = new RepositorioProducto();
-            const int CANT_ATRIBUTOS = 3;
+            const int CANT_ATRIBUTOS = 5;
             if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
             {
                 string[] vector = linea.Split(delimitador.ToCharArray());
