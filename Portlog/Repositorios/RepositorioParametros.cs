@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using PortlogDominio.EntidadesNegocio;
 using PortlogDominio.InterfacesRepositorios;
+using Repositorios;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -13,18 +14,23 @@ namespace Repositorios
 {
    public class RepositorioParametros : IRepositorio<Parametro>
     {
-        private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
+        //private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
+        private PortlogContext db = new PortlogContext();
         public bool Add(Parametro unObjeto)
         {
-            throw new NotImplementedException();
+            if (unObjeto != null && !unObjeto.Validar())
+                return false;
+            db.Parametros.Add(unObjeto);
+            db.SaveChanges();
+            return true;
         }
 
         public IEnumerable<Parametro> FindAll()
         {
-            throw new NotImplementedException();
+            return db.Parametros.ToList();
         }
 
-        public Parametro FindById(string nombre)
+       /* public Parametro FindById(string nombre)
         {
             //string nombreBuscado = nombre;
 
@@ -68,7 +74,7 @@ namespace Repositorios
                 return null;
             }
         }
-
+        */
         public Parametro FindById(object Id)
         {
             throw new NotImplementedException();

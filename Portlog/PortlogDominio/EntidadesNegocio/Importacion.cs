@@ -19,6 +19,10 @@ namespace PortlogDominio.EntidadesNegocio
         public int Cantidad { get; set; }
         public static decimal PrecioFinal { get; set; }
 
+        public bool Validar()
+        {
+            return true;
+        }
 
 
         #endregion

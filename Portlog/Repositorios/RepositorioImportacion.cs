@@ -12,7 +12,9 @@ using System.Data.SqlClient;
 namespace Repositorios
 {
     public class RepositorioImportacion : IRepositorio<Importacion>
-    {/*
+    {
+        private PortlogContext db = new PortlogContext();
+        /*
         private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
         public bool Add(Importacion unaImpo)
         {

@@ -125,7 +125,175 @@ namespace UtilidadesArchivos
             return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
         }
         #endregion
-        
-    
+        #region Usuario
+        public static IEnumerable<Usuario> LeerUsuarioDesdeArchivo(string carpeta, string archivo, string delimitador)
+        {
+            RepositorioUsuario repoUsu = new RepositorioUsuario();
+            //lee del archivo delimitado y los almacena en una lista de clientes.
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, carpeta, archivo);
+            List<Usuario> lista = new List<Usuario>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(ruta))
+                {
+                    string linea = sr.ReadLine();
+                    while (linea != null)
+                    {
+                        Usuario usu = LeerUsuario(linea, delimitador);
+                        if (usu != null && usu.Validar() && !repoUsu.FindAll().Contains(usu)) // 
+                        {
+                            repoUsu.Add(usu);
+                        }
+                        linea = sr.ReadLine();
+                    }
+                }
+                return lista;
+            }
+            catch (FileNotFoundException ex)
+            {
+                return null;
+            }
+
+        }
+
+        private static Usuario LeerUsuario(string linea, string delimitador)
+        {
+            RepositorioUsuario repoUsu = new RepositorioUsuario();
+            const int CANT_ATRIBUTOS = 3;
+            if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
+            {
+                string[] vector = linea.Split(delimitador.ToCharArray());
+                if (vector.Length == CANT_ATRIBUTOS)
+                {
+                                       
+                    Usuario usu = new Usuario
+                    {
+                        Ci = vector[0],
+                        Pass = vector[1],
+                        Rol = vector[2]
+                        
+                    };
+
+
+                    return usu;
+                }
+            }
+            return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
+        }
+        #endregion
+        #region Parametro
+        public static IEnumerable<Parametro> LeerParametroDesdeArchivo(string carpeta, string archivo, string delimitador)
+        {
+            RepositorioParametros repoParam = new RepositorioParametros();
+            //lee del archivo delimitado y los almacena en una lista de clientes.
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, carpeta, archivo);
+            List<Parametro> lista = new List<Parametro>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(ruta))
+                {
+                    string linea = sr.ReadLine();
+                    while (linea != null)
+                    {
+                        Parametro param = LeerParametro(linea, delimitador);
+                        if (param != null && param.Validar() && !repoParam.FindAll().Contains(param)) // 
+                        {
+                            repoParam.Add(param);
+                        }
+                        linea = sr.ReadLine();
+                    }
+                }
+                return lista;
+            }
+            catch (FileNotFoundException ex)
+            {
+                return null;
+            }
+
+        }
+
+        private static Parametro LeerParametro(string linea, string delimitador)
+        {
+            RepositorioParametros repoParam = new RepositorioParametros();
+            const int CANT_ATRIBUTOS = 3;
+            if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
+            {
+                string[] vector = linea.Split(delimitador.ToCharArray());
+                if (vector.Length == CANT_ATRIBUTOS)
+                {
+
+                    Parametro param = new Parametro
+                    {
+                        Nombre = vector[0],
+                        Valor = int.Parse(vector[1])
+                        
+
+                    };
+
+
+                    return param;
+                }
+            }
+            return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
+        }
+        #endregion
+        #region Importacion
+        public static IEnumerable<Importacion> LeerImportacionDesdeArchivo(string carpeta, string archivo, string delimitador)
+        {
+            RepositorioImportacion repoImp = new RepositorioImportacion();
+            //lee del archivo delimitado y los almacena en una lista de clientes.
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, carpeta, archivo);
+            List<Importacion> lista = new List<Importacion>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(ruta))
+                {
+                    string linea = sr.ReadLine();
+                    while (linea != null)
+                    {
+                        Importacion imp = LeerImportacion(linea, delimitador);
+                        if (imp != null && imp.Validar() && !repoImp.FindAll().Contains(imp)) // 
+                        {
+                            repoImp.Add(imp);
+                        }
+                        linea = sr.ReadLine();
+                    }
+                }
+                return lista;
+            }
+            catch (FileNotFoundException ex)
+            {
+                return null;
+            }
+
+        }
+
+        private static Importacion LeerImportacion(string linea, string delimitador)
+        {
+            RepositorioImportacion repoUsu = new RepositorioImportacion();
+            const int CANT_ATRIBUTOS = 3;
+            if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
+            {
+                string[] vector = linea.Split(delimitador.ToCharArray());
+                if (vector.Length == CANT_ATRIBUTOS)
+                {
+
+                    Importacion imp = new Importacion
+                    {
+                        Id = vector[0],
+                        FechaIngreso = vector[1],
+                        SalidaPrevista = vector[2],
+                        Cantidad= vector[3],
+                        
+                    };
+
+
+                    return imp;
+                }
+            }
+            return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
+        }
+        #endregion
+
     }
 }
