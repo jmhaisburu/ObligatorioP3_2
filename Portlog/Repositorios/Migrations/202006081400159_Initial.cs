@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -34,7 +34,7 @@
                 "dbo.Productoes",
                 c => new
                     {
-                        Codigo = c.Int(nullable: false, identity: true),
+                        Codigo = c.Int(nullable: false),
                         Nombre = c.String(),
                         Peso = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Cliente_Rut = c.String(maxLength: 128),
@@ -42,6 +42,15 @@
                 .PrimaryKey(t => t.Codigo)
                 .ForeignKey("dbo.Clientes", t => t.Cliente_Rut)
                 .Index(t => t.Cliente_Rut);
+            
+            CreateTable(
+                "dbo.Parametroes",
+                c => new
+                    {
+                        Nombre = c.String(nullable: false, maxLength: 128),
+                        Valor = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Nombre);
             
             CreateTable(
                 "dbo.Salidas",
@@ -74,6 +83,7 @@
             DropIndex("dbo.Importacions", new[] { "Producto_Codigo" });
             DropTable("dbo.Usuarios");
             DropTable("dbo.Salidas");
+            DropTable("dbo.Parametroes");
             DropTable("dbo.Productoes");
             DropTable("dbo.Importacions");
             DropTable("dbo.Clientes");

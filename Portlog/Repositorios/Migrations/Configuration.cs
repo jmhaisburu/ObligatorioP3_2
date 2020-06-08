@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Repositorios.PortlogContext";
         }
 
         protected override void Seed(Repositorios.PortlogContext context)

@@ -52,13 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202005301610597_InitialCreate.cs" />
-    <Compile Include="Migrations\202005301610597_InitialCreate.designer.cs">
-      <DependentUpon>202005301610597_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006071412204_AgregaParamTable.cs" />
-    <Compile Include="Migrations\202006071412204_AgregaParamTable.designer.cs">
-      <DependentUpon>202006071412204_AgregaParamTable.cs</DependentUpon>
+    <Compile Include="Migrations\202006081400159_Initial.cs" />
+    <Compile Include="Migrations\202006081400159_Initial.designer.cs">
+      <DependentUpon>202006081400159_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortlogContext.cs" />
@@ -81,11 +77,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005301610597_InitialCreate.resx">
-      <DependentUpon>202005301610597_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006071412204_AgregaParamTable.resx">
-      <DependentUpon>202006071412204_AgregaParamTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006081400159_Initial.resx">
+      <DependentUpon>202006081400159_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
