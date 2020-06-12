@@ -12,7 +12,9 @@ using System.Data.SqlClient;
 namespace Repositorios
 {
     public class RepositorioImportacion : IRepositorio<Importacion>
-    {/*
+    {
+        private PortlogContext db = new PortlogContext();
+        /*
         private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
         public bool Add(Importacion unaImpo)
         {
@@ -161,14 +163,20 @@ namespace Repositorios
 
   
   */
-        public bool Add(Importacion unObjeto)
+        public bool Add(Importacion imp)
         {
-            throw new NotImplementedException();
+            if (imp != null && !imp.Validar())
+                return false;
+            Producto pro = db.Productos.Find(imp.Producto.Codigo);
+            imp.Producto = pro;
+            db.Importaciones.Add(imp);
+            db.SaveChanges();
+            return true;
         }
 
         public IEnumerable<Importacion> FindAll()
         {
-            throw new NotImplementedException();
+            return db.Importaciones.ToList();
         }
 
         public Importacion FindById(object Id)

@@ -9,6 +9,7 @@ using PortlogDominio.InterfacesRepositorios;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace Repositorios
 {
 
@@ -20,9 +21,10 @@ namespace Repositorios
         {
             if (pro != null && !pro.Validar())
                 return false;
-
+            Cliente cli = db.Clientes.Find(pro.Cliente.Rut);
+            pro.Cliente = cli;                 
             db.Productos.Add(pro);
-            db.SaveChanges();
+            db.SaveChanges();            
             return true;
         }
 
@@ -32,9 +34,11 @@ namespace Repositorios
 
         }
 
-        public Producto FindById(object Id)
+        public Producto FindById(object codProd)
         {
-            throw new NotImplementedException();
+            int codigo = (int)codProd;
+            Producto pro = db.Productos.Find(codigo);
+            return pro;
         }
 
         public bool Remove(object Id)

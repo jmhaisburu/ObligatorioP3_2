@@ -16,14 +16,25 @@ namespace Repositorios
     {
         private PortlogContext db = new PortlogContext();
 
-        public bool Add(Cliente unObjeto)
+        public bool Add(Cliente cli)
         {
-            throw new NotImplementedException();
+
+            if (cli != null && cli.Validar())
+            {
+                var unCli = db.Clientes.FirstOrDefault(c => c.Rut==cli.Rut);
+                if (unCli == null)
+                {
+                    db.Clientes.Add(cli);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
         }
 
         public IEnumerable<Cliente> FindAll()
         {
-            throw new NotImplementedException();
+            return db.Clientes.ToList();
         }
 
         public Cliente FindById(object Id)
@@ -49,6 +60,8 @@ namespace Repositorios
         {
             throw new NotImplementedException();
         }
+
+        
 
         /*
                 public bool Add(Cliente unObjeto)

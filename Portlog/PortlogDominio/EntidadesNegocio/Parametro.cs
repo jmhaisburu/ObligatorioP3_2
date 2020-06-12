@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PortlogDominio.EntidadesNegocio
 {
+    [Table("Parametro")]
     public class Parametro
     {
-        private string nombre;
-        private int valor;
+        [Key]
+        public string Nombre { get; set; }
+        public int Valor { get; set; }
 
-        public string Nombre { get => nombre; set => nombre = value; }
-        public int Valor { get => valor; set => valor = value; }
+        public bool Validar()
+        {
+            return true;
+        }
     }
+
+
 }
