@@ -25,12 +25,14 @@ namespace UtilidadesArchivos
                     string linea = sr.ReadLine();
                     while (linea != null)
                     {
-                        Cliente cli = LeerCliente(linea, delimitador);
-                        if (cli != null && cli.Validar() && !repoCli.FindAll().Contains(cli)) // 
+                        Cliente cli = LeerCliente(linea, delimitador);                        
                         {
-                            repoCli.Add(cli);
+                            if (cli != null && cli.Validar()) // 
+                            {
+                                repoCli.Add(cli);
+                            }
+                            linea = sr.ReadLine();
                         }
-                        linea = sr.ReadLine();
                     }
                 }
                 return lista;
