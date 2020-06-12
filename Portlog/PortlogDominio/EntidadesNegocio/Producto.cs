@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PortlogDominio.EntidadesNegocio
 {
+    [Table("Producto")]
     public class Producto
     {
         #region atributos

@@ -3,12 +3,12 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Clientes",
+                "dbo.Cliente",
                 c => new
                     {
                         Rut = c.String(nullable: false, maxLength: 128),
@@ -17,7 +17,7 @@
                 .PrimaryKey(t => t.Rut);
             
             CreateTable(
-                "dbo.Importacions",
+                "dbo.Importacion",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -27,11 +27,11 @@
                         Producto_Codigo = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Productoes", t => t.Producto_Codigo)
+                .ForeignKey("dbo.Producto", t => t.Producto_Codigo)
                 .Index(t => t.Producto_Codigo);
             
             CreateTable(
-                "dbo.Productoes",
+                "dbo.Producto",
                 c => new
                     {
                         Codigo = c.Int(nullable: false),
@@ -40,11 +40,11 @@
                         Cliente_Rut = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Codigo)
-                .ForeignKey("dbo.Clientes", t => t.Cliente_Rut)
+                .ForeignKey("dbo.Cliente", t => t.Cliente_Rut)
                 .Index(t => t.Cliente_Rut);
             
             CreateTable(
-                "dbo.Parametroes",
+                "dbo.Parametro",
                 c => new
                     {
                         Nombre = c.String(nullable: false, maxLength: 128),
@@ -53,7 +53,7 @@
                 .PrimaryKey(t => t.Nombre);
             
             CreateTable(
-                "dbo.Salidas",
+                "dbo.Salida",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -64,7 +64,7 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Usuarios",
+                "dbo.Usuario",
                 c => new
                     {
                         Ci = c.String(nullable: false, maxLength: 128),
@@ -77,16 +77,16 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Importacions", "Producto_Codigo", "dbo.Productoes");
-            DropForeignKey("dbo.Productoes", "Cliente_Rut", "dbo.Clientes");
-            DropIndex("dbo.Productoes", new[] { "Cliente_Rut" });
-            DropIndex("dbo.Importacions", new[] { "Producto_Codigo" });
-            DropTable("dbo.Usuarios");
-            DropTable("dbo.Salidas");
-            DropTable("dbo.Parametroes");
-            DropTable("dbo.Productoes");
-            DropTable("dbo.Importacions");
-            DropTable("dbo.Clientes");
+            DropForeignKey("dbo.Importacion", "Producto_Codigo", "dbo.Producto");
+            DropForeignKey("dbo.Producto", "Cliente_Rut", "dbo.Cliente");
+            DropIndex("dbo.Producto", new[] { "Cliente_Rut" });
+            DropIndex("dbo.Importacion", new[] { "Producto_Codigo" });
+            DropTable("dbo.Usuario");
+            DropTable("dbo.Salida");
+            DropTable("dbo.Parametro");
+            DropTable("dbo.Producto");
+            DropTable("dbo.Importacion");
+            DropTable("dbo.Cliente");
         }
     }
 }
