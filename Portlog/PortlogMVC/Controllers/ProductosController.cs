@@ -13,13 +13,23 @@ namespace PortlogMVC.Controllers
 {
     public class ProductosController : Controller
     {
-        private PortlogContext db = new PortlogContext();
+        RepositorioProducto repoPro = new RepositorioProducto();
 
         // GET: Productos
         public ActionResult Index()
         {
-            return View(db.Productos.ToList());
+            if (Session["rol"] != null)
+            {
+                IEnumerable<Producto> produtosDb = repoPro.FindAll();
+                return View(produtosDb);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
+
 
         // GET: Productos/Details/5
         public ActionResult Details(int? id)
@@ -28,7 +38,7 @@ namespace PortlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = repoPro.FindById(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -51,8 +61,8 @@ namespace PortlogMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Productos.Add(producto);
-                db.SaveChanges();
+                repoPro.Add(producto);
+
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +76,7 @@ namespace PortlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = repoPro.FindById(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -83,8 +93,8 @@ namespace PortlogMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
+                // db.Entry(producto).State = EntityState.Modified;
+                //  db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(producto);
@@ -97,7 +107,7 @@ namespace PortlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = repoPro.FindById(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -110,9 +120,9 @@ namespace PortlogMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
-            db.SaveChanges();
+            Producto producto = repoPro.FindById(id);
+            //   db.Productos.Remove(producto);
+            //    db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +130,7 @@ namespace PortlogMVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //    db.Dispose();
             }
             base.Dispose(disposing);
         }

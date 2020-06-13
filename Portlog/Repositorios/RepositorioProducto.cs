@@ -22,15 +22,21 @@ namespace Repositorios
             if (pro != null && !pro.Validar())
                 return false;
             Cliente cli = db.Clientes.Find(pro.Cliente.Rut);
-            pro.Cliente = cli;                 
+            pro.Cliente = cli;
             db.Productos.Add(pro);
-            db.SaveChanges();            
+            db.SaveChanges();
             return true;
         }
 
         public IEnumerable<Producto> FindAll()
         {
-            return db.Productos.ToList();
+           // IEnumerable<Producto> productos = db.Productos.ToList();
+
+            IEnumerable<Producto> productos = db.Productos
+                                .Include("Cliente")
+                                .ToList();
+
+            return productos;
 
         }
 

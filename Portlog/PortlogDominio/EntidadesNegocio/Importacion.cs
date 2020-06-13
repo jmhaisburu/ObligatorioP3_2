@@ -12,9 +12,10 @@ namespace PortlogDominio.EntidadesNegocio
     [Table("Importacion")]
     public class Importacion
     {
-        
+
         #region atributos
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime SalidaPrevista { get; set; }

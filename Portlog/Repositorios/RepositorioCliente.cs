@@ -21,7 +21,8 @@ namespace Repositorios
 
             if (cli != null && cli.Validar())
             {
-                var unCli = db.Clientes.FirstOrDefault(c => c.Rut==cli.Rut);
+                Cliente unCli = db.Clientes.Find(cli.Rut);
+
                 if (unCli == null)
                 {
                     db.Clientes.Add(cli);

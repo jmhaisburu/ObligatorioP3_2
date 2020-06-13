@@ -77,16 +77,16 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Importacion", "Producto_Codigo", "dbo.Producto");
-            DropForeignKey("dbo.Producto", "Cliente_Rut", "dbo.Cliente");
-            DropIndex("dbo.Producto", new[] { "Cliente_Rut" });
-            DropIndex("dbo.Importacion", new[] { "Producto_Codigo" });
-            DropTable("dbo.Usuario");
-            DropTable("dbo.Salida");
-            DropTable("dbo.Parametro");
-            DropTable("dbo.Producto");
-            DropTable("dbo.Importacion");
-            DropTable("dbo.Cliente");
+            DropForeignKey("dbo.Importacions", "Producto_Codigo", "dbo.Producto");
+            DropForeignKey("dbo.Productoes", "Cliente_Rut", "dbo.Cliente");
+            DropIndex("dbo.Productoes", new[] { "Cliente_Rut" });
+            DropIndex("dbo.Importacions", new[] { "Producto_Codigo" });
+            DropTable("dbo.Usuarios");
+            DropTable("dbo.Salidas");
+            DropTable("dbo.Parametroes");
+            DropTable("dbo.Productoes");
+            DropTable("dbo.Importacions");
+            DropTable("dbo.Clientes");
         }
     }
 }

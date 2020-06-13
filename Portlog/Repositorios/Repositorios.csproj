@@ -56,6 +56,10 @@
     <Compile Include="Migrations\202006122004466_init.designer.cs">
       <DependentUpon>202006122004466_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006122223132_IdentityIportacion.cs" />
+    <Compile Include="Migrations\202006122223132_IdentityIportacion.designer.cs">
+      <DependentUpon>202006122223132_IdentityIportacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortlogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006122004466_init.resx">
       <DependentUpon>202006122004466_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006122223132_IdentityIportacion.resx">
+      <DependentUpon>202006122223132_IdentityIportacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
