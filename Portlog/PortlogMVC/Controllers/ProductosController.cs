@@ -18,15 +18,15 @@ namespace PortlogMVC.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            if (Session["rol"] != null)
-            {
+           // if (Session["rol"] != null)
+            //{
                 IEnumerable<Producto> produtosDb = repoPro.FindAll();
                 return View(produtosDb);
-            }
-            else
+           // }
+           /* else
             {
                 return RedirectToAction("Index", "Home");
-            }
+            }*/
 
         }
 

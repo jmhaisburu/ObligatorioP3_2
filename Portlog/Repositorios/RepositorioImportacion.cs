@@ -165,13 +165,20 @@ namespace Repositorios
   */
         public bool Add(Importacion imp)
         {
-            if (imp != null && !imp.Validar())
+            Importacion unaImp = db.Importaciones.Find(imp.IdImp);
+            if (unaImp == null)
+            {
+                if (imp != null && imp.Validar())
+                {
+
+                    Producto pro = db.Productos.Find(imp.Producto.Codigo);
+                    imp.Producto = pro;
+                    db.Importaciones.Add(imp);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
                 return false;
-            Producto pro = db.Productos.Find(imp.Producto.Codigo);
-            imp.Producto = pro;
-            db.Importaciones.Add(imp);
-            db.SaveChanges();
-            return true;
         }
 
         public IEnumerable<Importacion> FindAll()

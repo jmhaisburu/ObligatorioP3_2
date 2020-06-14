@@ -284,7 +284,7 @@ namespace UtilidadesArchivos
                     pro = repoPro.FindById(int.Parse(vector[3]));
                     Importacion imp = new Importacion
                     {
-                        Id = int.Parse(vector[0]),
+                        IdImp = int.Parse(vector[0]),
                         FechaIngreso = DateTime.Parse(vector[1]),
                         SalidaPrevista = DateTime.Parse(vector[2]),
                         Producto = pro,

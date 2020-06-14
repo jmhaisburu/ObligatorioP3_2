@@ -17,7 +17,7 @@ namespace PortlogDominio.EntidadesNegocio
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public decimal Peso { get; set; }
-        public Cliente Cliente { get; set; }
+        public  Cliente Cliente { get; set; }
 
 
 
@@ -41,7 +41,9 @@ namespace PortlogDominio.EntidadesNegocio
 
         public bool Validar()
         {
-            return true;
+            if (Codigo>0 && Nombre.Length>0 && Peso>0) {
+                return true; }
+            else { return false; }
         }
     }
 }

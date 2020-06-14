@@ -60,6 +60,38 @@
     <Compile Include="Migrations\202006122223132_IdentityIportacion.designer.cs">
       <DependentUpon>202006122223132_IdentityIportacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006131425121_identityImp2.cs" />
+    <Compile Include="Migrations\202006131425121_identityImp2.designer.cs">
+      <DependentUpon>202006131425121_identityImp2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131436169_idImp.cs" />
+    <Compile Include="Migrations\202006131436169_idImp.designer.cs">
+      <DependentUpon>202006131436169_idImp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131512230_regexCli.cs" />
+    <Compile Include="Migrations\202006131512230_regexCli.designer.cs">
+      <DependentUpon>202006131512230_regexCli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131515474_chauRegex.cs" />
+    <Compile Include="Migrations\202006131515474_chauRegex.designer.cs">
+      <DependentUpon>202006131515474_chauRegex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131517575_cliente.cs" />
+    <Compile Include="Migrations\202006131517575_cliente.designer.cs">
+      <DependentUpon>202006131517575_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131521554_cliente2.cs" />
+    <Compile Include="Migrations\202006131521554_cliente2.designer.cs">
+      <DependentUpon>202006131521554_cliente2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131523374_cliente3.cs" />
+    <Compile Include="Migrations\202006131523374_cliente3.designer.cs">
+      <DependentUpon>202006131523374_cliente3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006131525049_clienteSinvalidbd.cs" />
+    <Compile Include="Migrations\202006131525049_clienteSinvalidbd.designer.cs">
+      <DependentUpon>202006131525049_clienteSinvalidbd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortlogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +118,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006122223132_IdentityIportacion.resx">
       <DependentUpon>202006122223132_IdentityIportacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131425121_identityImp2.resx">
+      <DependentUpon>202006131425121_identityImp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131436169_idImp.resx">
+      <DependentUpon>202006131436169_idImp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131512230_regexCli.resx">
+      <DependentUpon>202006131512230_regexCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131515474_chauRegex.resx">
+      <DependentUpon>202006131515474_chauRegex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131517575_cliente.resx">
+      <DependentUpon>202006131517575_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131521554_cliente2.resx">
+      <DependentUpon>202006131521554_cliente2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131523374_cliente3.resx">
+      <DependentUpon>202006131523374_cliente3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006131525049_clienteSinvalidbd.resx">
+      <DependentUpon>202006131525049_clienteSinvalidbd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

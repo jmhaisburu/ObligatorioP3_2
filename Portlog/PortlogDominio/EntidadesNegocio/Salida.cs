@@ -17,7 +17,14 @@ namespace PortlogDominio.EntidadesNegocio
         public string Direccion { get; set; }
         public DateTime FechaSalida{get; set;}
 
+        public bool Validar()
+        {
+            if (Matricula.Length > 0 && Matricula.Length<8 && Direccion.Length > 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
 
-        
     }
 }

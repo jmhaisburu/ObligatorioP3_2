@@ -17,7 +17,9 @@ namespace PortlogDominio.EntidadesNegocio
 
         public bool Validar()
         {
-            return true;
+            if (Valor>0) {
+                return true; }
+            else { return false; }
         }
     }
 

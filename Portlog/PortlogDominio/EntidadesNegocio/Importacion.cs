@@ -16,7 +16,7 @@ namespace PortlogDominio.EntidadesNegocio
         #region atributos
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int IdImp { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime SalidaPrevista { get; set; }
         public Producto Producto { get; set; }
@@ -25,7 +25,9 @@ namespace PortlogDominio.EntidadesNegocio
 
         public bool Validar()
         {
-            return true;
+            if (SalidaPrevista<FechaIngreso && Cantidad>0 && PrecioFinal>0) {
+                return true; }
+            else { return false; }
         }
 
 

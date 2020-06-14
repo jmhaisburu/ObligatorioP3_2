@@ -26,7 +26,7 @@ namespace Repositorios
                 Usuario UnUsu = db.Usuarios.Find(usu.Ci);
                 if (UnUsu == null)
                 {
-                    db.Usuarios.Add(UnUsu);
+                    db.Usuarios.Add(usu);
                     db.SaveChanges();
                     return true;
                 }
