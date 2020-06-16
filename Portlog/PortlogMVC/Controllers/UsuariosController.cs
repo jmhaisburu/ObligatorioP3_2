@@ -18,6 +18,10 @@ namespace PortlogMVC.Controllers
        private RepositorioUsuario repo = new RepositorioUsuario(); // Instanciar el repositorio
                                                                         // GET: Login
 
+            public ActionResult IniciarSesion()
+        {
+            return View();
+        }
             public ActionResult VerificarUsuario(Usuario user)
             {
 

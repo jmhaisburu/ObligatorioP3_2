@@ -1,0 +1,17 @@
+﻿@model PortlogDominio.EntidadesNegocio.Usuario
+
+@{ 
+    ViewBag.Title = "IniciarSesion";
+}
+
+<h2>Iniciar Sesión</h2>
+<form method="post" action="~/Usuarios/VerificarUsuario">
+    <label>Cedula</label>
+    <input type="text" name="ci" />
+    <br />
+    <label>Password</label>
+    <input type="password" name="pass" />
+    <br />
+    <input type="submit" value="Iniciar sesion" />
+</form>
+<p>@ViewBag.mensaje</p>
