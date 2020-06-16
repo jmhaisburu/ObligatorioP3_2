@@ -25,12 +25,14 @@ namespace UtilidadesArchivos
                     string linea = sr.ReadLine();
                     while (linea != null)
                     {
-                        Cliente cli = LeerCliente(linea, delimitador);
-                        if (cli != null && cli.Validar() && !repoCli.FindAll().Contains(cli)) // 
+                        Cliente cli = LeerCliente(linea, delimitador);                        
                         {
-                            repoCli.Add(cli);
+                            if (cli != null && cli.Validar()) // 
+                            {
+                                repoCli.Add(cli);
+                            }
+                            linea = sr.ReadLine();
                         }
-                        linea = sr.ReadLine();
                     }
                 }
                 return lista;
@@ -282,7 +284,7 @@ namespace UtilidadesArchivos
                     pro = repoPro.FindById(int.Parse(vector[3]));
                     Importacion imp = new Importacion
                     {
-                        Id = int.Parse(vector[0]),
+                        IdImp = int.Parse(vector[0]),
                         FechaIngreso = DateTime.Parse(vector[1]),
                         SalidaPrevista = DateTime.Parse(vector[2]),
                         Producto = pro,

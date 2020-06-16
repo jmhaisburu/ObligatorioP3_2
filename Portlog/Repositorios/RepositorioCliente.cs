@@ -16,13 +16,21 @@ namespace Repositorios
     {
         private PortlogContext db = new PortlogContext();
 
-        public bool Add(Cliente unObjeto)
+        public bool Add(Cliente cli)
         {
-            if (unObjeto != null && !unObjeto.Validar())
-                return false;
-            db.Clientes.Add(unObjeto);
-            db.SaveChanges();
-            return true;
+
+            if (cli != null && cli.Validar())
+            {
+                Cliente unCli = db.Clientes.Find(cli.Rut);
+
+                if (unCli == null)
+                {
+                    db.Clientes.Add(cli);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
         }
 
         public IEnumerable<Cliente> FindAll()

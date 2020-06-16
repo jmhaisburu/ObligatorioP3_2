@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace PortlogDominio.EntidadesNegocio
 {
+    [Table("Importacion")]
     public class Importacion
     {
+
         #region atributos
         [Key]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IdImp { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime SalidaPrevista { get; set; }
         public Producto Producto { get; set; }
@@ -21,7 +25,9 @@ namespace PortlogDominio.EntidadesNegocio
 
         public bool Validar()
         {
-            return true;
+            if (SalidaPrevista<FechaIngreso && Cantidad>0 && PrecioFinal>0) {
+                return true; }
+            else { return false; }
         }
 
 

@@ -19,13 +19,20 @@ namespace Repositorios
     {
         private PortlogContext db = new PortlogContext();
 
-        public bool Add(Usuario unObjeto)
+        public bool Add(Usuario usu)
         {
-            if (unObjeto != null && !unObjeto.Validar())
-                return false;          
-            db.Usuarios.Add(unObjeto);
-            db.SaveChanges();
-            return true;
+            if (usu != null && usu.Validar())
+            {
+                Usuario UnUsu = db.Usuarios.Find(usu.Ci);
+                if (UnUsu == null)
+                {
+                    db.Usuarios.Add(usu);
+                    db.SaveChanges();
+                    return true;
+                }
+
+            }
+            return false;
         }
 
         public IEnumerable<Usuario> FindAll()

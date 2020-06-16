@@ -16,13 +16,19 @@ namespace Repositorios
     {
         //private string cadenaConexion = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
         private PortlogContext db = new PortlogContext();
-        public bool Add(Parametro unObjeto)
+        public bool Add(Parametro param)
         {
-            if (unObjeto != null && !unObjeto.Validar())
-                return false;
-            db.Parametros.Add(unObjeto);
-            db.SaveChanges();
-            return true;
+            Parametro unParam = db.Parametros.Find(param.Nombre);
+            if (unParam == null)
+            {
+                if (param != null && param.Validar())
+                {
+
+                    db.Parametros.Add(param);
+                    db.SaveChanges();
+                    return true;
+                }
+            } return false;
         }
 
         public IEnumerable<Parametro> FindAll()

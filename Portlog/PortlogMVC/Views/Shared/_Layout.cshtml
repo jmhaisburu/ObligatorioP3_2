@@ -21,13 +21,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Agregar Usuario", "Create", "Usuarios")</li>
-                    <li>@Html.ActionLink("Importar archivos", "ImportarArchivos", "Home")</li>
-                    <li>@Html.ActionLink("Iniciar Sesión", "IniciarSesion", "Usuarios")</li>
-                </ul>
+                    @if (Session["rol"] != null)
+                    {
+                        if (Session["rol"].ToString() == "admin")
+                        {
+
+                            //solo para admin
+                        }
+                        if (Session["rol"].ToString() == "depo")
+                        {
+                            //solo para depo
+
+                        }
+                        // para Ambos tipos de Usuarios
+
+                    }
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Agregar Usuario", "Create", "Usuarios")</li>
+                        <li>@Html.ActionLink("Productos", "Index", "Productos") </li>
+                        <li>@Html.ActionLink("Importar archivos", "ImportarArchivos", "Home")</li>
+                    </ul>
             </div>
         </div>
     </div>

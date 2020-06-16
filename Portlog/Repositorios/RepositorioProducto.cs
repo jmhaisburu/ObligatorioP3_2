@@ -9,6 +9,7 @@ using PortlogDominio.InterfacesRepositorios;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace Repositorios
 {
 
@@ -18,18 +19,32 @@ namespace Repositorios
 
         public bool Add(Producto pro)
         {
-            if (pro != null && !pro.Validar())
-                return false;
-            Cliente cli = db.Clientes.Find(pro.Cliente.Rut);
-            pro.Cliente = cli;
-            db.Productos.Add(pro);
-            db.SaveChanges();
-            return true;
+
+            if (pro != null && pro.Validar())
+            {
+                Producto unPro = db.Productos.Find(pro.Codigo);
+                if (unPro == null)
+                {
+                    Cliente cli = db.Clientes.Find(pro.Cliente.Rut);
+                    pro.Cliente = cli;
+                    db.Productos.Add(pro);
+                    db.SaveChanges();
+                    return true;
+                }
+                
+            }
+            return false;
         }
 
         public IEnumerable<Producto> FindAll()
         {
-            return db.Productos.ToList();
+           // IEnumerable<Producto> productos = db.Productos.ToList();
+
+            IEnumerable<Producto> productos = db.Productos
+                                .Include("Cliente")
+                                .ToList();
+
+            return productos;
 
         }
 
