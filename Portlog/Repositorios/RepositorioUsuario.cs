@@ -41,9 +41,13 @@ namespace Repositorios
             return usuarios;
         }
 
-        public Usuario FindById(object Id)
+        public Usuario FindById(object Ci)
         {
-            throw new NotImplementedException();
+            String ci = (string)Ci;
+
+            Usuario usu = db.Usuarios.Find(ci);
+
+            return usu;
         }
 
         public bool Remove(object Id)

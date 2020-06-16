@@ -22,10 +22,12 @@ namespace PortlogMVC.Controllers
         {
             return View();
         }
-            public ActionResult VerificarUsuario(Usuario user)
+
+        [HttpPost]
+        public ActionResult VerificarUsuario(Usuario user)
             {
 
-                if (user.Ci.Length > 6 && user.Ci.Length < 9 && user.Pass != "")
+                if (user.Ci.Length > 0 && user.Pass != "")
                 {
                     Usuario usuBuscado = repo.FindById(user.Ci);
                     if (usuBuscado != null && user.Pass == usuBuscado.Pass)
