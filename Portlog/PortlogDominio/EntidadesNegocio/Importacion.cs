@@ -25,7 +25,7 @@ namespace PortlogDominio.EntidadesNegocio
 
         public bool Validar()
         {
-            if (SalidaPrevista<FechaIngreso && Cantidad>0 && PrecioFinal>0) {
+            if (SalidaPrevista>FechaIngreso && Cantidad>0) {
                 return true; }
             else { return false; }
         }
