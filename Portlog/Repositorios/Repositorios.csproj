@@ -92,6 +92,10 @@
     <Compile Include="Migrations\202006131525049_clienteSinvalidbd.designer.cs">
       <DependentUpon>202006131525049_clienteSinvalidbd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006211452164_impoEnSalida.cs" />
+    <Compile Include="Migrations\202006211452164_impoEnSalida.designer.cs">
+      <DependentUpon>202006211452164_impoEnSalida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortlogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006131525049_clienteSinvalidbd.resx">
       <DependentUpon>202006131525049_clienteSinvalidbd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211452164_impoEnSalida.resx">
+      <DependentUpon>202006211452164_impoEnSalida.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

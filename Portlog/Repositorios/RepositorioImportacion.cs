@@ -183,33 +183,40 @@ namespace Repositorios
 
         public IEnumerable<Importacion> FindAll()
         {
-            return db.Importaciones.ToList();
+            return db.Importaciones.
+               
+                Include("Producto.Cliente").
+                ToList();
         }
 
         public IEnumerable<Importacion> FindByProducto(int codpro)
         {
-            return db.Importaciones.Where(i=> i.Producto.Codigo == codpro).ToList();
+
+            return db.Importaciones.Include("Producto.Cliente").
+                Where(i=> i.Producto.Codigo == codpro).ToList();
         }
         //- Texto que forma parte del nombre del producto importado.
         public IEnumerable<Importacion> FindByProductoNombre(string nombre)
         {
-            return db.Importaciones.Where(i => i.Producto.Nombre.Contains(nombre)).ToList();
+            return db.Importaciones.Include("Producto.Cliente").
+                Where(i => i.Producto.Nombre.Contains(nombre)).ToList();
         }
 
         //RUT del cliente que puede importar el producto de la importación. 
         public IEnumerable<Importacion> FindByRutCliente(string rut)
         {
-            return db.Importaciones.Where(i => i.Producto.Cliente.Rut.Equals(rut)).ToList();
+            return db.Importaciones.Include("Producto.Cliente").
+                Where(i => i.Producto.Cliente.Rut.Equals(rut)).ToList();
         }
         //- Importaciones cuya fecha prevista de salida supera la fecha del día y aun no salieron de depósito. 
-        public IEnumerable<Importacion> FindSinSalir(string rut)
+        public IEnumerable<Importacion> FindSinSalir()
         {
-            DateTime hoy = DateTime.Today;
-            return db.Importaciones
-                .Include("Salida")
-                .Where(i => i.SalidaPrevista > hoy);
-     
-        }
+           
+             DateTime hoy = DateTime.Today;
+             return db.Importaciones.
+            Include("Producto.Cliente")
+            .Where(i => i.SalidaPrevista > hoy).ToList();
+             }
 
 
         public Importacion FindById(object Id)

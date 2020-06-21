@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PortlogDominio.EntidadesNegocio.Importacion>
+﻿@model IEnumerable<PortlogMVC.Models.ImportacionViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.IdImp)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FechaIngreso)
         </th>
         <th>
@@ -20,11 +23,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Cantidad)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioFinal)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdImp)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaIngreso)
         </td>
@@ -35,9 +44,12 @@
             @Html.DisplayFor(modelItem => item.Cantidad)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.PrecioFinal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.IdImp  }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdImp }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdImp  })
         </td>
     </tr>
 }

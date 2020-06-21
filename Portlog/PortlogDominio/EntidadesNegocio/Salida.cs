@@ -16,6 +16,7 @@ namespace PortlogDominio.EntidadesNegocio
         public string Matricula { get; set; }
         public string Direccion { get; set; }
         public DateTime FechaSalida{get; set;}
+        public Importacion Importacion { get; set; }
 
         public bool Validar()
         {

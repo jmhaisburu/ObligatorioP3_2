@@ -17,7 +17,7 @@ namespace PortlogMVC.Controllers
         private PortlogContext db = new PortlogContext();
 
         private HttpClient cliente = new HttpClient();
-        private Uri uri = null;
+        private Uri ImportacionUri = null;
         private HttpResponseMessage response = new HttpResponseMessage();
 
         private RepositorioImportacion repoImportacion = new RepositorioImportacion();
@@ -25,7 +25,7 @@ namespace PortlogMVC.Controllers
         public ImportacionesController()
         {
             cliente.BaseAddress = new Uri("http://localhost:57666");
-            uri = new Uri("http://localhost:57666/api/Importacion");
+            ImportacionUri = new Uri("http://localhost:57666/api/Importacion");
             cliente.DefaultRequestHeaders
                 .Accept.Add(new System.Net.Http.Headers
                 .MediaTypeWithQualityHeaderValue("application/json"));
@@ -33,7 +33,25 @@ namespace PortlogMVC.Controllers
         // GET: Importaciones
         public ActionResult Index()
         {
-            return View(db.Importaciones.ToList());
+            response = cliente.GetAsync(ImportacionUri).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var imports = response.Content.
+            ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
+                if (imports != null && imports.Count() > 0)
+                    return View("Index", imports.ToList());
+                else
+                {
+                    TempData["ResultadoOperacion"] = "No hay productos disponibles";
+                    return View("Index", new List<Models.ImportacionViewModel>());
+                }
+            }
+            else
+            {
+                TempData["ResultadoOperacion"] = "Error desconocido";
+                return View("Index");
+            }
+
         }
 
         // GET: Importaciones/Details/5

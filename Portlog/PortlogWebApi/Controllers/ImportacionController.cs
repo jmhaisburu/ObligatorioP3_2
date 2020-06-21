@@ -9,9 +9,10 @@ using PortlogDominio.EntidadesNegocio;
 
 namespace PortlogWebApi.Controllers
 {
+    
     public class ImportacionController : ApiController
     {
-      
+        private RepositorioImportacion repoImportacion = new RepositorioImportacion();
         // GET: api/Importacion
         public IHttpActionResult Get()
         {
@@ -19,7 +20,7 @@ namespace PortlogWebApi.Controllers
             if (lasImportaciones == null)
                 return NotFound();
             else
-                return Ok(lasImportaciones);            
+                return Ok(lasImportaciones);
         }
 
         // GET: api/Importacion/5
@@ -30,7 +31,7 @@ namespace PortlogWebApi.Controllers
 
 
         //filtro por codigo de producto
-        [Route("{codpro}")]  // parámetro sin restricción
+        [Route("api/importacion/porCodigoProducto/{codpro:int}")]  // parámetro sin restricción
         public IHttpActionResult GetByProd(int codpro)
         {
             IEnumerable<Importacion> lasImportaciones = repoImportacion.FindByProducto(codpro);
@@ -41,9 +42,29 @@ namespace PortlogWebApi.Controllers
         }
 
         //- Texto que forma parte del nombre del producto importado. 
+        [Route("api/importacion/porNombreProducto/{nombre}")]
         public IHttpActionResult GetByProductoNombre(string nombre)
         {
             IEnumerable<Importacion> lasImportaciones = repoImportacion.FindByProductoNombre(nombre);
+            if (lasImportaciones == null)
+                return NotFound();
+            else
+                return Ok(lasImportaciones);
+        }
+
+        [Route("api/importacion/porRutCliente/{rut}")]
+        public IHttpActionResult GetByRutCliente(string rut)
+        {
+            IEnumerable<Importacion> lasImportaciones = repoImportacion.FindByRutCliente(rut);
+            if (lasImportaciones == null)
+                return NotFound();
+            else
+                return Ok(lasImportaciones);
+        }
+        [Route("api/importacion/sinSalir")]
+        public IHttpActionResult GetBySinSalir()
+        {
+            IEnumerable<Importacion> lasImportaciones = repoImportacion.FindSinSalir();
             if (lasImportaciones == null)
                 return NotFound();
             else

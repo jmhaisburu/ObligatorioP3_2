@@ -196,9 +196,7 @@
     <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Importaciones\Create.cshtml" />
     <Content Include="Views\Importaciones\Delete.cshtml" />
-    <Content Include="Views\Importaciones\Details.cshtml" />
     <Content Include="Views\Importaciones\Edit.cshtml" />
-    <Content Include="Views\Importaciones\Index.cshtml" />
     <Content Include="Views\Salidas\Create.cshtml" />
     <Content Include="Views\Salidas\Delete.cshtml" />
     <Content Include="Views\Salidas\Details.cshtml" />
@@ -206,6 +204,8 @@
     <Content Include="Views\Salidas\Index.cshtml" />
     <Content Include="Views\Usuarios\VerificarUsuario.cshtml" />
     <Content Include="Views\Usuarios\IniciarSesion.cshtml" />
+    <Content Include="Views\Importaciones\Details.cshtml" />
+    <Content Include="Views\Importaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
