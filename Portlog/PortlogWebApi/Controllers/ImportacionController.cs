@@ -11,7 +11,7 @@ namespace PortlogWebApi.Controllers
 {
     public class ImportacionController : ApiController
     {
-        private RepositorioImportacion repoImportacion = new RepositorioImportacion();
+      
         // GET: api/Importacion
         public IHttpActionResult Get()
         {
@@ -28,6 +28,35 @@ namespace PortlogWebApi.Controllers
             return "value";
         }
 
+
+        //filtro por codigo de producto
+        [Route("{codpro}")]  // parámetro sin restricción
+        public IHttpActionResult GetByProd(int codpro)
+        {
+            IEnumerable<Importacion> lasImportaciones = repoImportacion.FindByProducto(codpro);
+            if (lasImportaciones == null)
+                return NotFound();
+            else
+                return Ok(lasImportaciones);
+        }
+
+        //- Texto que forma parte del nombre del producto importado. 
+        public IHttpActionResult GetByProductoNombre(string nombre)
+        {
+            IEnumerable<Importacion> lasImportaciones = repoImportacion.FindByProductoNombre(nombre);
+            if (lasImportaciones == null)
+                return NotFound();
+            else
+                return Ok(lasImportaciones);
+        }
+
+
+        /*
+         [Route("api/clientes")]
+        [HttpPost]
+        public HttpResponseMessage CrearCliente(Cliente cli) 
+	    { ... }
+         */
         // POST: api/Importacion
         public void Post([FromBody]string value)
         {

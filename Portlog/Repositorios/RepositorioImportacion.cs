@@ -186,6 +186,32 @@ namespace Repositorios
             return db.Importaciones.ToList();
         }
 
+        public IEnumerable<Importacion> FindByProducto(int codpro)
+        {
+            return db.Importaciones.Where(i=> i.Producto.Codigo == codpro).ToList();
+        }
+        //- Texto que forma parte del nombre del producto importado.
+        public IEnumerable<Importacion> FindByProductoNombre(string nombre)
+        {
+            return db.Importaciones.Where(i => i.Producto.Nombre.Contains(nombre)).ToList();
+        }
+
+        //RUT del cliente que puede importar el producto de la importación. 
+        public IEnumerable<Importacion> FindByRutCliente(string rut)
+        {
+            return db.Importaciones.Where(i => i.Producto.Cliente.Rut.Equals(rut)).ToList();
+        }
+        //- Importaciones cuya fecha prevista de salida supera la fecha del día y aun no salieron de depósito. 
+        public IEnumerable<Importacion> FindSinSalir(string rut)
+        {
+            DateTime hoy = DateTime.Today;
+            return db.Importaciones
+                .Include("Salida")
+                .Where(i => i.SalidaPrevista > hoy);
+     
+        }
+
+
         public Importacion FindById(object Id)
         {
             throw new NotImplementedException();

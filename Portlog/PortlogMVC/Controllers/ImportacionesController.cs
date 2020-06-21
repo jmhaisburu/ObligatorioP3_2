@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using PortlogDominio.EntidadesNegocio;
@@ -15,6 +16,20 @@ namespace PortlogMVC.Controllers
     {
         private PortlogContext db = new PortlogContext();
 
+        private HttpClient cliente = new HttpClient();
+        private Uri uri = null;
+        private HttpResponseMessage response = new HttpResponseMessage();
+
+        private RepositorioImportacion repoImportacion = new RepositorioImportacion();
+
+        public ImportacionesController()
+        {
+            cliente.BaseAddress = new Uri("http://localhost:57666");
+            uri = new Uri("http://localhost:57666/api/Importacion");
+            cliente.DefaultRequestHeaders
+                .Accept.Add(new System.Net.Http.Headers
+                .MediaTypeWithQualityHeaderValue("application/json"));
+        }
         // GET: Importaciones
         public ActionResult Index()
         {
