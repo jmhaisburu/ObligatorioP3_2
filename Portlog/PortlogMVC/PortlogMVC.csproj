@@ -141,6 +141,7 @@
     </Compile>
     <Compile Include="Models\ImportacionViewModel.cs" />
     <Compile Include="Models\ProductoConClienteViewModel.cs" />
+    <Compile Include="Models\SalidaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +198,6 @@
     <Content Include="Views\Importaciones\Create.cshtml" />
     <Content Include="Views\Importaciones\Delete.cshtml" />
     <Content Include="Views\Importaciones\Edit.cshtml" />
-    <Content Include="Views\Salidas\Create.cshtml" />
     <Content Include="Views\Salidas\Delete.cshtml" />
     <Content Include="Views\Salidas\Details.cshtml" />
     <Content Include="Views\Salidas\Edit.cshtml" />
@@ -206,6 +206,7 @@
     <Content Include="Views\Usuarios\IniciarSesion.cshtml" />
     <Content Include="Views\Importaciones\Details.cshtml" />
     <Content Include="Views\Importaciones\Index.cshtml" />
+    <Content Include="Views\Salidas\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

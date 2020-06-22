@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using PortlogDominio.EntidadesNegocio;
@@ -13,8 +14,22 @@ namespace PortlogMVC.Controllers
 {
     public class SalidasController : Controller
     {
-        private PortlogContext db = new PortlogContext();
+        
 
+        private HttpClient cliente = new HttpClient();
+        private Uri salidasUri = null;
+        private HttpResponseMessage response = new HttpResponseMessage();
+
+        
+
+        public SalidasController()
+        {
+            cliente.BaseAddress = new Uri("http://localhost:57666");
+            salidasUri = new Uri("http://localhost:57666/api/Salidas");
+            cliente.DefaultRequestHeaders
+                .Accept.Add(new System.Net.Http.Headers
+                .MediaTypeWithQualityHeaderValue("application/json"));
+        }
         // GET: Salidas
         public ActionResult Index()
         {
@@ -47,16 +62,24 @@ namespace PortlogMVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Matricula,Direccion,FechaSalida")] Salida salida)
+        public ActionResult Create(Models.SalidaViewModel sal)
         {
             if (ModelState.IsValid)
             {
-                db.Salidas.Add(salida);
-                db.SaveChanges();
+                var tareaPost = cliente.PostAsJsonAsync(salidasUri, sal);
+                var result = tareaPost.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    TempData["ResultadoOperacion"] = "Agregado el producto ";
+                    return RedirectToAction("Index");
+                }
+                return View(sal);
+            }
+            else
+            {
+                TempData["ResultadoOperacion"] = "Ups! Verifique los datos";
                 return RedirectToAction("Index");
             }
-
-            return View(salida);
         }
 
         // GET: Salidas/Edit/5

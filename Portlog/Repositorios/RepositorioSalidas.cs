@@ -13,19 +13,47 @@ namespace Repositorios
 {
     public class RepositorioSalidas : IRepositorio<Salida>
     {
-        public bool Add(Salida unObjeto)
+        private PortlogContext db = new PortlogContext();
+        public bool Add(Salida sal)
         {
-            throw new NotImplementedException();
+           if (sal != null && sal.Validar())
+            {
+                Salida unaSal = db.Salidas.Find(sal.Id);
+                if (unaSal == null)
+                {
+                    Importacion imp = db.Importaciones.Find(sal.Importacion.IdImp);
+                    if (imp != null)
+                    {
+                        sal.Importacion = imp;
+                        Usuario cli = db.Usuarios.Find(sal.Usuario.Ci);
+                        if (cli != null)
+                        {
+                            sal.Usuario = cli;
+                            db.Salidas.Add(sal);
+                            db.SaveChanges();
+                            return true;
+                        }                        
+                    }
+                }
+
+            }
+            return false;
         }
 
         public IEnumerable<Salida> FindAll()
         {
-            throw new NotImplementedException();
+            IEnumerable<Salida> salidas = db.Salidas
+                             .Include("Importacion")
+                             .ToList();
+
+            return salidas;
         }
 
         public Salida FindById(object Id)
         {
-            throw new NotImplementedException();
+            int idSalida = (int)Id;
+            Salida sal = db.Salidas.Find(idSalida);
+            return sal;
         }
 
         public bool Remove(object Id)

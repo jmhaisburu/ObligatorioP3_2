@@ -17,6 +17,7 @@ namespace PortlogDominio.EntidadesNegocio
         public string Direccion { get; set; }
         public DateTime FechaSalida{get; set;}
         public Importacion Importacion { get; set; }
+        public Usuario Usuario { get; set; }
 
         public bool Validar()
         {
