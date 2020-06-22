@@ -211,15 +211,28 @@ namespace Repositorios
         //- Importaciones cuya fecha prevista de salida supera la fecha del día y aun no salieron de depósito. 
         public IEnumerable<Importacion> FindSinSalir()
         {
-           
-             DateTime hoy = DateTime.Today;
+
+            /* DateTime hoy = DateTime.Today;
              return db.Importaciones.
             Include("Producto.Cliente")
             .Where(i => i.SalidaPrevista > hoy).ToList();
-             }
+             }*/
+            DateTime hoy = DateTime.Today;
+            IEnumerable<Importacion> importaciones = db.Importaciones.
+            Include("Producto.Cliente")
+            .Where(i => i.SalidaPrevista > hoy).ToList();
+            IEnumerable<Salida> lasSalidas = db.Salidas.Include("Importacion").ToList();
+            if (lasSalidas != null)
+            {
+                return importaciones.Where(i => !lasSalidas.Any(s => i.IdImp == s.Importacion.IdImp));
+            }
+            else
+            {
+                return importaciones;
+            }
+            }
 
-
-        public Importacion FindById(object Id)
+            public Importacion FindById(object Id)
         {
             throw new NotImplementedException();
         }
