@@ -274,7 +274,7 @@ namespace UtilidadesArchivos
         {
            
             RepositorioProducto repoPro = new RepositorioProducto();
-            const int CANT_ATRIBUTOS = 5;
+            const int CANT_ATRIBUTOS = 6;
             if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
             {
                 string[] vector = linea.Split(delimitador.ToCharArray());
@@ -288,7 +288,8 @@ namespace UtilidadesArchivos
                         FechaIngreso = DateTime.Parse(vector[1]),
                         SalidaPrevista = DateTime.Parse(vector[2]),
                         Producto = pro,
-                        Cantidad = int.Parse(vector[4])
+                        Cantidad = int.Parse(vector[4]),
+                        PrecioFinal = decimal.Parse(vector[5])
                     };
                 
 
