@@ -33,7 +33,8 @@ namespace PortlogWebApi.Controllers
 
        
         // POST: api/Salidas
-        [HttpPost]        [Route("")]        public IHttpActionResult Post([FromBody] SalidaViewModel sal)        {            if (ModelState.IsValid)            {                Salida s = new Salida                {                    Id = sal.Id,                    Matricula = sal.Matricula,                    Direccion=sal.Direccion,                    FechaSalida=sal.FechaSalida,                    Importacion=sal.Importacion,                    Usuario=sal.Usuario                };                if (repoSalidas.Add(s))                {                    return (CreatedAtRoute("GetById", new { id = s.Id }, s));                }                else
+        [HttpPost]        [Route("")]        public IHttpActionResult Post([FromBody] SalidaViewModel sal)        {
+                        if (sal!=null)            {                Salida s = new Salida                {                    Id = sal.Id,                    Matricula = sal.Matricula,                    Direccion=sal.Direccion,                    FechaSalida=sal.FechaSalida,                    Importacion=sal.Importacion,                    Usuario=sal.Usuario                };                if (repoSalidas.Add(s))                {                    return Ok(s);                }                else
                 {                    return InternalServerError();                }            }            return (BadRequest(ModelState));        }              /*            Al utilzar Route Attributes para una de las rutas es necesario definirlo para todas, y se anula            el ruteo por convención.             El método PUT deja de hacer coincidir la ruta api/Articulos/5 con el método Put y lo mismo ocurre             con DELETE, obteniéndose
 
 

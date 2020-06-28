@@ -18,9 +18,9 @@ namespace Repositorios
         {
            if (sal != null && sal.Validar())
             {
-                Salida unaSal = db.Salidas.Find(sal.Id);
-                if (unaSal == null)
+                if (FindByIdImp(sal.Importacion.IdImp) == null)
                 {
+
                     Importacion imp = db.Importaciones.Find(sal.Importacion.IdImp);
                     if (imp != null)
                     {
@@ -32,13 +32,37 @@ namespace Repositorios
                             db.Salidas.Add(sal);
                             db.SaveChanges();
                             return true;
-                        }                        
+                        }
                     }
                 }
 
             }
             return false;
         }
+
+       /* public bool Add(Salida sal)
+        {
+            if (sal != null && sal.Validar())
+            {
+                Salida unaSal = db.Salidas.Find(sal.Id);
+                if (unaSal == null)
+                {
+                                     
+                              
+                      
+                      
+                     
+                            
+                            db.Salidas.Add(sal);
+                            db.SaveChanges();
+                            return true;
+                        
+                    
+                }
+
+            }
+            return false;
+        }*/
 
         public IEnumerable<Salida> FindAll()
         {
@@ -53,6 +77,13 @@ namespace Repositorios
         {
             int idSalida = (int)Id;
             Salida sal = db.Salidas.Find(idSalida);
+            return sal;
+        }
+
+        public Salida FindByIdImp(object Id)
+        {
+            int idImp = (int)Id;
+            Salida sal = db.Salidas.Where(s => s.Importacion.IdImp == idImp).FirstOrDefault();
             return sal;
         }
 

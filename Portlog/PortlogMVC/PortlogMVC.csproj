@@ -202,11 +202,11 @@
     <Content Include="Views\Salidas\Delete.cshtml" />
     <Content Include="Views\Salidas\Details.cshtml" />
     <Content Include="Views\Salidas\Edit.cshtml" />
-    <Content Include="Views\Salidas\Index.cshtml" />
     <Content Include="Views\Usuarios\VerificarUsuario.cshtml" />
     <Content Include="Views\Usuarios\IniciarSesion.cshtml" />
     <Content Include="Views\Importaciones\Index.cshtml" />
     <Content Include="Views\Importaciones\Details.cshtml" />
+    <Content Include="Views\Salidas\Index.cshtml" />
     <Content Include="Views\Salidas\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

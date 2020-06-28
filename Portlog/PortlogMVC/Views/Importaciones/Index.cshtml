@@ -76,7 +76,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdImp }) |
                 @Html.ActionLink("Details", "Details", new { id = item.IdImp }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.IdImp })
-                @*@if (Session["rol"].ToString() == "depo")*@
+                @if (Session["rol"].ToString() == "depo")
                 {
                     @Html.ActionLink("Salida de importacion", "SalidaDeImportacion", new { IdImp = item.IdImp })
                 }

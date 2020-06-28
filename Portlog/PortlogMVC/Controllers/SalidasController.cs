@@ -62,34 +62,45 @@ namespace PortlogMVC.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
 
+
+        // GET: Salidas
+         public ActionResult Index()
+         {
+            IEnumerable<Salida> salidas = repoSalidas.FindAll();
+            return View(salidas);
+        }
+
         // GET: Salidas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]       
         public ActionResult Create(Models.SalidaViewModel sal, Importacion tmpImportacion)
         {
             if (ModelState.IsValid)
             {
-                sal.Importacion = tmpImportacion;
-                sal.Usuario = repoUsu.FindById(Session["ci"]);
-                sal.FechaSalida = DateTime.Now;
-                var tareaPost = cliente.PostAsJsonAsync(salidasUri, sal);
-                var result = tareaPost.Result;
-                if (result.IsSuccessStatusCode)
+                if (sal.Matricula.Length > 0 && sal.Direccion.Length > 0)
                 {
-                    TempData["ResultadoOperacion"] = "Agregado el producto ";
-                    return RedirectToAction("Index");
+                    sal.Importacion = tmpImportacion;
+                    sal.Usuario = repoUsu.FindById(Session["ci"]);
+                    sal.FechaSalida = DateTime.Now;
+                    var tareaPost = cliente.PostAsJsonAsync(salidasUri, sal);
+                    var result = tareaPost.Result;
+                    if (result.IsSuccessStatusCode)
+                    {                                               
+                        return RedirectToAction("Index");
+                    }
+                    
                 }
-                return View(sal);
+                TempData["ResultadoOperacion"] = "Ya existe una salida para esa importacion";
+                return View();
             }
             else
             {
-                TempData["ResultadoOperacion"] = "Ups! Verifique los datos";
-                return RedirectToAction("Index");
+                TempData["ResultadoOperacion"] = "Debe llenar todos los campos";
+                return View(); 
             }
         }
         /*
