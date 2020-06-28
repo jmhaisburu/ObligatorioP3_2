@@ -16,8 +16,6 @@ namespace PortlogMVC.Models
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioFinal { get; set; }
-
-       
-
+        
     }
 }

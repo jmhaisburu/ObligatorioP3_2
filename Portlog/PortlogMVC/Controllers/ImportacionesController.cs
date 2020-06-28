@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using PortlogDominio.EntidadesNegocio;
+using PortlogMVC.Models;
 using Repositorios;
 
 namespace PortlogMVC.Controllers
@@ -30,14 +31,25 @@ namespace PortlogMVC.Controllers
                 .Accept.Add(new System.Net.Http.Headers
                 .MediaTypeWithQualityHeaderValue("application/json"));
         }
-        // GET: Importaciones
-        public ActionResult Index()
+        // GET: Importaciones http://localhost:57666/api/Importacion/porCodigoProducto/4
+        public ActionResult Index(int? codprod, string texto, string rut)
         {
-            response = cliente.GetAsync(ImportacionUri).Result;
+            if (codprod != null && codprod > 0)
+                response = cliente.GetAsync(ImportacionUri+ "/porCodigoProducto/"+codprod).Result;
+            
+            else if(texto !=null && texto != "")
+                response = cliente.GetAsync(ImportacionUri+"/porNombreProducto/"+texto).Result;
+
+            else if (rut != null && rut != "")
+                response = cliente.GetAsync(ImportacionUri + "/porRutCliente/" + rut).Result;
+
+            else 
+                response = cliente.GetAsync(ImportacionUri).Result;
+
             if (response.IsSuccessStatusCode)
             {
                 var imports = response.Content.
-            ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
+                ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
                 if (imports != null && imports.Count() > 0)
                     return View("Index", imports.ToList());
                 else
@@ -61,12 +73,22 @@ namespace PortlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Importacion importacion = db.Importaciones.Find(id);
+            Importacion importacion = repoImportacion.FindById(id);
+
+            ImportacionViewModel vm = new ImportacionViewModel
+            {
+                Cantidad = importacion.Cantidad,
+                FechaIngreso = importacion.FechaIngreso,
+                IdImp = importacion.IdImp,
+                SalidaPrevista = importacion.SalidaPrevista,
+                Producto = importacion.Producto
+            };
+
             if (importacion == null)
             {
                 return HttpNotFound();
             }
-            return View(importacion);
+            return View(vm);
         }
 
         // GET: Importaciones/Create

@@ -4,10 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Importaciones</h2>
+
+<form>
+    <select class="form-control" id="selectFiltro">
+        <option value="Todas" selected> Todas </option>
+        <option value="Producto"> Filtro por Producto </option>
+        <option value="Texto"> Texto que forma parte del nombre del producto</option>
+        <option value="Rut"> Rut del Cliente</option>
+    </select>
+
+    <div id="divProducto" class="filtros"  style="display:none">
+        <label> Codigo Producto</label> <input type="text" name="codprod" class="f form-control" value=""/>
+    </div>
+
+    <div id="divTexto" style="display:none" class="filtros">
+        <label> Texto que forma parte </label> <input type="text" name="texto" class="f form-control" value=""/>
+    </div>
+
+    <div id="divRut" style="display:none" class="filtros">
+        <label> Rut del cliente </label> <input type="text" name="rut" class="f form-control" value=""/>
+    </div>
+
+    <br />
+    <input type="submit" value="Buscar" class="btn-block" />
+
+</form>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva Importacion", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,29 +54,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdImp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalidaPrevista)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioFinal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.IdImp  }) |
-            @Html.ActionLink("Details", "Details", new { id = item.IdImp }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdImp  })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdImp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalidaPrevista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioFinal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdImp }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdImp }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdImp })
+            </td>
+        </tr>
+    }
 
 </table>
+

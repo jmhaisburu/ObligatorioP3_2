@@ -1,15 +1,23 @@
-﻿@model IEnumerable<PortlogMVC.Models.ImportacionViewModel>
+﻿@model PortlogMVC.Models.ImportacionViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles de la importacion</h2>
 
 <div>
-    <h4>Importacion</h4>
+    <h4> Importacion </h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdImp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdImp)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FechaIngreso)
         </dt>
@@ -34,9 +42,17 @@
             @Html.DisplayFor(model => model.Cantidad)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.Codigo)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { ImpId = Model.IdImp }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

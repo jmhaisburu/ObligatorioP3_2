@@ -21,7 +21,7 @@ namespace PortlogMVC.Controllers
         private HttpResponseMessage response = new HttpResponseMessage();
 
         
-
+        /*
         public SalidasController()
         {
             cliente.BaseAddress = new Uri("http://localhost:57666");
@@ -55,7 +55,7 @@ namespace PortlogMVC.Controllers
         public ActionResult Create()
         {
             return View();
-        }
+        }*/
 
         // POST: Salidas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -81,7 +81,7 @@ namespace PortlogMVC.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        /*
         // GET: Salidas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -147,5 +147,6 @@ namespace PortlogMVC.Controllers
             }
             base.Dispose(disposing);
         }
+        */
     }
 }
