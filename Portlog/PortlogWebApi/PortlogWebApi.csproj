@@ -141,6 +141,10 @@
       <Project>{F80CFC14-AAB3-47D1-870E-A71B42D4CEA2}</Project>
       <Name>PortlogDominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PortlogMVC\PortlogMVC.csproj">
+      <Project>{a1714506-4bb9-44c1-a063-22771bb62254}</Project>
+      <Name>PortlogMVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repositorios\Repositorios.csproj">
       <Project>{d43b7a16-d93e-4668-922f-a086ec05eb55}</Project>
       <Name>Repositorios</Name>

@@ -19,9 +19,10 @@ namespace PortlogMVC.Controllers
         private HttpClient cliente = new HttpClient();
         private Uri salidasUri = null;
         private HttpResponseMessage response = new HttpResponseMessage();
+        private RepositorioSalidas repoSalidas = new RepositorioSalidas();
+        private RepositorioUsuario repoUsu = new RepositorioUsuario();
 
-        
-        /*
+
         public SalidasController()
         {
             cliente.BaseAddress = new Uri("http://localhost:57666");
@@ -31,41 +32,51 @@ namespace PortlogMVC.Controllers
                 .MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: Salidas
-        public ActionResult Index()
-        {
-            return View(db.Salidas.ToList());
-        }
+        /* public ActionResult Index()
+         {
+             return View(db.Salidas.ToList());
+         }
 
-        // GET: Salidas/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Salida salida = db.Salidas.Find(id);
-            if (salida == null)
-            {
-                return HttpNotFound();
-            }
-            return View(salida);
-        }
+         // GET: Salidas/Details/5
+         public ActionResult Details(int? id)
+         {
+             if (id == null)
+             {
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+             Salida salida = db.Salidas.Find(id);
+             if (salida == null)
+             {
+                 return HttpNotFound();
+             }
+             return View(salida);
+         }
+
+         // GET: Salidas/Create
+         public ActionResult Create()
+         {
+             return View();
+         }*/
+
+        // POST: Salidas/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
 
         // GET: Salidas/Create
         public ActionResult Create()
         {
             return View();
-        }*/
+        }
 
-        // POST: Salidas/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Models.SalidaViewModel sal)
+        public ActionResult Create(Models.SalidaViewModel sal, Importacion tmpImportacion)
         {
             if (ModelState.IsValid)
             {
+                sal.Importacion = tmpImportacion;
+                sal.Usuario = repoUsu.FindById(Session["ci"]);
+                sal.FechaSalida = DateTime.Now;
                 var tareaPost = cliente.PostAsJsonAsync(salidasUri, sal);
                 var result = tareaPost.Result;
                 if (result.IsSuccessStatusCode)

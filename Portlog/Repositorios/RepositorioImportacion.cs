@@ -85,9 +85,11 @@ namespace Repositorios
             }
         }
 
-        public Importacion FindById(int Id)
+        public Importacion FindById(object ImpId)
         {
-            throw new NotImplementedException();
+            int impId= (int)ImpId;
+            Importacion imp = db.Importaciones.Find(impId);
+            return imp;
 
         }
 

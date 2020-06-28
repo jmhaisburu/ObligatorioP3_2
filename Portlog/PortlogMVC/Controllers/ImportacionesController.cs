@@ -91,6 +91,14 @@ namespace PortlogMVC.Controllers
             return View(vm);
         }
 
+        public ActionResult SalidaDeImportacion(int? idImp)
+        {
+            Importacion tmpImportacion = repoImportacion.FindById(idImp);
+
+            return RedirectToAction("Create", "Salidas", tmpImportacion);
+
+        }
+
         // GET: Importaciones/Create
         public ActionResult Create()
         {
