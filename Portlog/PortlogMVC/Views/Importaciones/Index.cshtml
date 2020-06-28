@@ -12,19 +12,22 @@
         <option value="Producto"> Filtro por Producto </option>
         <option value="Texto"> Texto que forma parte del nombre del producto</option>
         <option value="Rut"> Rut del Cliente</option>
+        <option value="fechaMenor">Fecha prevista de salida MENOR hoy en depósito</option>
     </select>
 
-    <div id="divProducto" class="filtros"  style="display:none">
-        <label> Codigo Producto</label> <input type="text" name="codprod" class="f form-control" value=""/>
+    <div id="divProducto" class="filtros" style="display:none">
+        <label> Codigo Producto</label> <input type="text" name="codprod" class="f form-control" value="" />
     </div>
 
     <div id="divTexto" style="display:none" class="filtros">
-        <label> Texto que forma parte </label> <input type="text" name="texto" class="f form-control" value=""/>
+        <label> Texto que forma parte </label> <input type="text" name="texto" class="f form-control" value="" />
     </div>
 
     <div id="divRut" style="display:none" class="filtros">
-        <label> Rut del cliente </label> <input type="text" name="rut" class="f form-control" value=""/>
+        <label> Rut del cliente </label> <input type="text" name="rut" class="f form-control" value="" />
     </div>
+
+    <input type="text" id="txtFechaMenor" name="fechaMenor" class="f form-control" value=""  style="display:none" />
 
     <br />
     <input type="submit" value="Buscar" class="btn-block" />

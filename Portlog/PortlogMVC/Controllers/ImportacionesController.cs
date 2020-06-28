@@ -32,7 +32,7 @@ namespace PortlogMVC.Controllers
                 .MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: Importaciones http://localhost:57666/api/Importacion/porCodigoProducto/4
-        public ActionResult Index(int? codprod, string texto, string rut)
+        public ActionResult Index(int? codprod, string texto, string rut, string fechaMenor)
         {
             if (codprod != null && codprod > 0)
                 response = cliente.GetAsync(ImportacionUri+ "/porCodigoProducto/"+codprod).Result;
@@ -42,6 +42,9 @@ namespace PortlogMVC.Controllers
 
             else if (rut != null && rut != "")
                 response = cliente.GetAsync(ImportacionUri + "/porRutCliente/" + rut).Result;
+            
+            else if(fechaMenor != null && fechaMenor != "")
+                response = cliente.GetAsync(ImportacionUri + "/sinSalir").Result;
 
             else 
                 response = cliente.GetAsync(ImportacionUri).Result;

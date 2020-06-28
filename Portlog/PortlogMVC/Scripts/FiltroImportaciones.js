@@ -12,5 +12,11 @@ $("#selectFiltro").change(function () {
         $("#div" + $("#selectFiltro").val()).show(); //mostramos el div con el filtro que queremos usar
     }
 
+
+    if ($("#selectFiltro").val() == "fechaMenor") {
+
+        $("#txtFechaMenor").val("true");
+    }
+   
 });
 

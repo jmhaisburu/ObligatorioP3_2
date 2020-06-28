@@ -62,6 +62,7 @@ namespace PortlogWebApi.Controllers
             else
                 return Ok(lasImportaciones);
         }
+        //Importaciones cuya fecha prevista de salida ES MENOR QUE la fecha del día y aun no salieron de depósito
         [Route("api/importacion/sinSalir")]
         public IHttpActionResult GetBySinSalir()
         {

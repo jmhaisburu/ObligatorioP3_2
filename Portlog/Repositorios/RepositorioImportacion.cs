@@ -65,15 +65,11 @@ namespace Repositorios
         public IEnumerable<Importacion> FindSinSalir()
         {
 
-            /* DateTime hoy = DateTime.Today;
-             return db.Importaciones.
-            Include("Producto.Cliente")
-            .Where(i => i.SalidaPrevista > hoy).ToList();
-             }*/
             DateTime hoy = DateTime.Today;
             IEnumerable<Importacion> importaciones = db.Importaciones.
             Include("Producto.Cliente")
-            .Where(i => i.SalidaPrevista > hoy).ToList();
+            .Where(i => i.SalidaPrevista < hoy).ToList();
+
             IEnumerable<Salida> lasSalidas = db.Salidas.Include("Importacion").ToList();
             if (lasSalidas != null)
             {
