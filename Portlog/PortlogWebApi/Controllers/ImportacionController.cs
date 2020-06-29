@@ -23,13 +23,7 @@ namespace PortlogWebApi.Controllers
             else
                 return Ok(lasImportaciones);
         }
-
-        // GET: api/Importacion/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+               
 
         //filtro por codigo de producto
         [Route("api/importacion/porCodigoProducto/{codpro:int}")]  // parámetro sin restricción
@@ -75,11 +69,17 @@ namespace PortlogWebApi.Controllers
 
 
         /*
-         [Route("api/clientes")]
+          // GET: api/Importacion/5
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        [Route("api/clientes")]
         [HttpPost]
         public HttpResponseMessage CrearCliente(Cliente cli) 
 	    { ... }
-         */
+         
         // POST: api/Importacion
         public void Post([FromBody]string value)
         {
@@ -93,6 +93,6 @@ namespace PortlogWebApi.Controllers
         // DELETE: api/Importacion/5
         public void Delete(int id)
         {
-        }
+        }*/
     }
 }

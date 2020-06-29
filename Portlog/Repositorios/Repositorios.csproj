@@ -108,12 +108,15 @@
     <Compile Include="Migrations\202006281915202_preciofinal.designer.cs">
       <DependentUpon>202006281915202_preciofinal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006292332165_borrarParametro.cs" />
+    <Compile Include="Migrations\202006292332165_borrarParametro.designer.cs">
+      <DependentUpon>202006292332165_borrarParametro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PortlogContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioCliente.cs" />
     <Compile Include="RepositorioImportacion.cs" />
-    <Compile Include="RepositorioParametros.cs" />
     <Compile Include="RepositorioProducto.cs" />
     <Compile Include="RepositorioSalidas.cs" />
     <Compile Include="RepositorioUsuario.cs" />
@@ -170,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006281915202_preciofinal.resx">
       <DependentUpon>202006281915202_preciofinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006292332165_borrarParametro.resx">
+      <DependentUpon>202006292332165_borrarParametro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

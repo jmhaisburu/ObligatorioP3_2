@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="EntidadesNegocio\Importacion.cs" />
     <Compile Include="EntidadesNegocio\Cliente.cs" />
-    <Compile Include="EntidadesNegocio\Parametro.cs" />
     <Compile Include="EntidadesNegocio\Producto.cs" />
     <Compile Include="EntidadesNegocio\Salida.cs" />
     <Compile Include="EntidadesNegocio\Usuario.cs" />

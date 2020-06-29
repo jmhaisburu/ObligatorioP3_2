@@ -16,7 +16,7 @@ namespace Repositorios
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Importacion> Importaciones{ get; set; }
         public DbSet<Salida> Salidas { get; set; }
-        public DbSet<Parametro> Parametros { get; set; }
+        
 
         public PortlogContext() : base("conexionPortlog2")
         {

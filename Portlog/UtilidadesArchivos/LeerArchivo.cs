@@ -183,62 +183,7 @@ namespace UtilidadesArchivos
             return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
         }
         #endregion
-        #region Parametro
-        public static IEnumerable<Parametro> LeerParametroDesdeArchivo(string carpeta, string archivo, string delimitador)
-        {
-            RepositorioParametros repoParam = new RepositorioParametros();
-            //lee del archivo delimitado y los almacena en una lista de clientes.
-            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, carpeta, archivo);
-            List<Parametro> lista = new List<Parametro>();
-            try
-            {
-                using (StreamReader sr = new StreamReader(ruta))
-                {
-                    string linea = sr.ReadLine();
-                    while (linea != null)
-                    {
-                        Parametro param = LeerParametro(linea, delimitador);
-                        if (param != null && param.Validar() && !repoParam.FindAll().Contains(param)) // 
-                        {
-                            repoParam.Add(param);
-                        }
-                        linea = sr.ReadLine();
-                    }
-                }
-                return lista;
-            }
-            catch (FileNotFoundException ex)
-            {
-                return null;
-            }
-
-        }
-
-        private static Parametro LeerParametro(string linea, string delimitador)
-        {
-            RepositorioParametros repoParam = new RepositorioParametros();
-            const int CANT_ATRIBUTOS = 2;
-            if (!String.IsNullOrEmpty(linea) && !string.IsNullOrEmpty(delimitador))
-            {
-                string[] vector = linea.Split(delimitador.ToCharArray());
-                if (vector.Length == CANT_ATRIBUTOS)
-                {
-
-                    Parametro param = new Parametro
-                    {
-                        Nombre = vector[0],
-                        Valor = int.Parse(vector[1])
-                        
-
-                    };
-
-
-                    return param;
-                }
-            }
-            return null;//hay algún error, no se obtiene un cliente. Aquí lo ideal sería grabar en un archivo de log de errores
-        }
-        #endregion
+        
         #region Importacion
         public static IEnumerable<Importacion> LeerImportacionDesdeArchivo(string carpeta, string archivo, string delimitador)
         {

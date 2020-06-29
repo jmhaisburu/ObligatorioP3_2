@@ -21,7 +21,7 @@ namespace PortlogMVC.Controllers
 
             UtilidadesArchivos.LeerArchivo.LeerProductoDesdeArchivo("ArchivosTxt", "Productos", "#");
 
-            UtilidadesArchivos.LeerArchivo.LeerParametroDesdeArchivo("ArchivosTxt", "Parametros", "#");
+            
 
             UtilidadesArchivos.LeerArchivo.LeerImportacionDesdeArchivo("ArchivosTxt", "Importaciones", "#");
 
