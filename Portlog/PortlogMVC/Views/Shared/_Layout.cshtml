@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PORTLOG", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -32,19 +32,22 @@
                         if (Session["rol"].ToString() == "depo")
                         {
                             //solo para depo
-
+                            <li>@Html.ActionLink("Salidas", "Index", "Salidas") </li>
                         }
                         // para Ambos tipos de Usuarios
-
+                        <li>@Html.ActionLink("Productos", "Index", "Productos") </li>
+                        <li>@Html.ActionLink("Importaciones", "Index", "Importaciones")</li>
+                        <li>@Html.ActionLink("Agregar Usuario", "Create", "Usuarios")</li>
+                        <li>@Html.ActionLink("Cerrar Sesion", "CerrarSesion", "Usuarios")</li>
                     }
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Agregar Usuario", "Create", "Usuarios")</li>
-                    <li>@Html.ActionLink("Productos", "Index", "Productos") </li>
+                    else
+                    {
+                        <li>@Html.ActionLink("Iniciar Sesion", "IniciarSesion", "Usuarios")</li>
+                    }
+
                     <li>@Html.ActionLink("Importar archivos", "ImportarArchivos", "Home")</li>
-                    <li>@Html.ActionLink("Iniciar Sesion", "IniciarSesion", "Usuarios")</li>
-                    <li>@Html.ActionLink("Importaciones", "Index", "Importaciones")</li>
+
+
                 </ul>
             </div>
         </div>

@@ -34,38 +34,46 @@ namespace PortlogMVC.Controllers
         // GET: Importaciones http://localhost:57666/api/Importacion/porCodigoProducto/4
         public ActionResult Index(int? codprod, string texto, string rut, string fechaMenor)
         {
-            if (codprod != null && codprod > 0)
-                response = cliente.GetAsync(ImportacionUri+ "/porCodigoProducto/"+codprod).Result;
-            
-            else if(texto !=null && texto != "")
-                response = cliente.GetAsync(ImportacionUri+"/porNombreProducto/"+texto).Result;
-
-            else if (rut != null && rut != "")
-                response = cliente.GetAsync(ImportacionUri + "/porRutCliente/" + rut).Result;
-            
-            else if(fechaMenor != null && fechaMenor != "")
-                response = cliente.GetAsync(ImportacionUri + "/sinSalir").Result;
-
-            else 
-                response = cliente.GetAsync(ImportacionUri).Result;
-
-            if (response.IsSuccessStatusCode)
+            if(Session["rol"] != null)
             {
-                var imports = response.Content.
-                ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
-                if (imports != null && imports.Count() > 0)
-                    return View("Index", imports.ToList());
+                if (codprod != null && codprod > 0)
+                    response = cliente.GetAsync(ImportacionUri + "/porCodigoProducto/" + codprod).Result;
+
+                else if (texto != null && texto != "")
+                    response = cliente.GetAsync(ImportacionUri + "/porNombreProducto/" + texto).Result;
+
+                else if (rut != null && rut != "")
+                    response = cliente.GetAsync(ImportacionUri + "/porRutCliente/" + rut).Result;
+
+                else if (fechaMenor != null && fechaMenor != "")
+                    response = cliente.GetAsync(ImportacionUri + "/sinSalir").Result;
+
+                else
+                    response = cliente.GetAsync(ImportacionUri).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var imports = response.Content.
+                    ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
+                    if (imports != null && imports.Count() > 0)
+                        return View("Index", imports.ToList());
+                    else
+                    {
+
+                        return View("Index", new List<Models.ImportacionViewModel>());
+                    }
+                }
                 else
                 {
-                    TempData["ResultadoOperacion"] = "No hay productos disponibles";
-                    return View("Index", new List<Models.ImportacionViewModel>());
+                    TempData["ResultadoOperacion"] = "Error desconocido";
+                    return View("Index");
                 }
             }
             else
             {
-                TempData["ResultadoOperacion"] = "Error desconocido";
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
+            
 
         }
 

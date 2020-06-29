@@ -14,7 +14,7 @@ namespace PortlogMVC.Controllers
 {
     public class SalidasController : Controller
     {
-        
+
 
         private HttpClient cliente = new HttpClient();
         private Uri salidasUri = null;
@@ -31,32 +31,7 @@ namespace PortlogMVC.Controllers
                 .Accept.Add(new System.Net.Http.Headers
                 .MediaTypeWithQualityHeaderValue("application/json"));
         }
-        // GET: Salidas
-        /* public ActionResult Index()
-         {
-             return View(db.Salidas.ToList());
-         }
 
-         // GET: Salidas/Details/5
-         public ActionResult Details(int? id)
-         {
-             if (id == null)
-             {
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-             }
-             Salida salida = db.Salidas.Find(id);
-             if (salida == null)
-             {
-                 return HttpNotFound();
-             }
-             return View(salida);
-         }
-
-         // GET: Salidas/Create
-         public ActionResult Create()
-         {
-             return View();
-         }*/
 
         // POST: Salidas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -64,19 +39,35 @@ namespace PortlogMVC.Controllers
 
 
         // GET: Salidas
-         public ActionResult Index()
-         {
-            IEnumerable<Salida> salidas = repoSalidas.FindAll();
-            return View(salidas);
+        public ActionResult Index()
+        {
+            if (Session["rol"].ToString() == "depo")
+            {
+                IEnumerable<Salida> salidas = repoSalidas.FindAll();
+                return View(salidas);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
         // GET: Salidas/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["rol"].ToString() == "depo")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
 
-        [HttpPost]       
+        [HttpPost]
         public ActionResult Create(Models.SalidaViewModel sal, Importacion tmpImportacion)
         {
             if (ModelState.IsValid)
@@ -89,10 +80,10 @@ namespace PortlogMVC.Controllers
                     var tareaPost = cliente.PostAsJsonAsync(salidasUri, sal);
                     var result = tareaPost.Result;
                     if (result.IsSuccessStatusCode)
-                    {                                               
+                    {
                         return RedirectToAction("Index");
                     }
-                    
+
                 }
                 TempData["ResultadoOperacion"] = "Ya existe una salida para esa importacion";
                 return View();
@@ -100,7 +91,7 @@ namespace PortlogMVC.Controllers
             else
             {
                 TempData["ResultadoOperacion"] = "Debe llenar todos los campos";
-                return View(); 
+                return View();
             }
         }
         /*
