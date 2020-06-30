@@ -1,5 +1,5 @@
 ﻿console.log("ASFSAFASD");
-
+$(".linkDepo").hide();
 
 
 $("#selectFiltro").change(function () {
@@ -14,18 +14,23 @@ $("#selectFiltro").change(function () {
     }
 
 
+    
+    
+   
+});
+
+$("#btnSelect").click(function () {
+
     if ($("#selectFiltro").val() == "fechaMenor") {
 
         $("#txtFechaMenor").val("true");
         $(".linkDepo").show();
     }
-    else {
-        $(".linkDepo").hide();
-    }
-   
-});
+}
 
-$(".linkDepo").hide();
+
+
+
 
 
 
