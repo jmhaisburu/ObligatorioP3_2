@@ -57,10 +57,7 @@ namespace Repositorios
             throw new NotImplementedException();
         }
 
-        public Cliente FindById()
-        {
-            throw new NotImplementedException();
-        }
+   
 
         
 

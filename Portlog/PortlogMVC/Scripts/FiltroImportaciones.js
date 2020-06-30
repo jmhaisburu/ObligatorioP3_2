@@ -1,6 +1,7 @@
 ﻿console.log("ASFSAFASD");
 
 
+
 $("#selectFiltro").change(function () {
     $(".f").val("");//vaciamos todos los input
 
@@ -16,7 +17,18 @@ $("#selectFiltro").change(function () {
     if ($("#selectFiltro").val() == "fechaMenor") {
 
         $("#txtFechaMenor").val("true");
+        $(".linkDepo").show();
+    }
+    else {
+        $(".linkDepo").hide();
     }
    
 });
+
+$(".linkDepo").hide();
+
+
+
+
+
 

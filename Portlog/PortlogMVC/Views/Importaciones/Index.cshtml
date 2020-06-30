@@ -27,7 +27,7 @@
         <label> Rut del cliente </label> <input type="text" name="rut" class="f form-control" value="" />
     </div>
 
-    <input type="text" id="txtFechaMenor" name="fechaMenor" class="f form-control" value=""  style="display:none" />
+    <input type="text" id="txtFechaMenor" name="fechaMenor" class="f form-control" value="" style="display:none" />
 
     <br />
     <input type="submit" value="Buscar" class="btn-block" />
@@ -78,14 +78,20 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.IdImp }) |
                 @Html.ActionLink("Details", "Details", new { id = item.IdImp }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdImp })
-                @if (Session["rol"].ToString() == "depo")
-                {
-                    @Html.ActionLink("Salida de importacion", "SalidaDeImportacion", new { IdImp = item.IdImp })
-                }
-            </td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdImp }) |
+                <div class="linkDepo">
+                    @if (Session["rol"].ToString() == "depo")
+                    {
+                        @Html.ActionLink("Salida de importacion", "SalidaDeImportacion", new { IdImp = item.IdImp, @class = "linkDepo" })
+                    }
+                </div>
+</td>
         </tr>
     }
 
 </table>
 
+<script type="text/javascript" >
+    var nombre = $("#selectFiltro").val();
+    alert("dgsdgsdg"+nombre);
+</script>
