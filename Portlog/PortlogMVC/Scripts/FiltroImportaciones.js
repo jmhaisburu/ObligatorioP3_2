@@ -19,6 +19,15 @@ $("#selectFiltro").change(function () {
    
 });
 
+
+if ($("#depoLink").val() == "si") {
+    $(".linkDepo").show();
+}
+else {
+    $(".linkDepo").hide();
+}
+
+
 $("#btnSelect").click(function () {
 
     if ($("#selectFiltro").val() == "fechaMenor") {
@@ -26,14 +35,5 @@ $("#btnSelect").click(function () {
         $("#txtFechaMenor").val("true");
         $(".linkDepo").show();
     }
-}
-
-
-
-
-
-
-
-
-
+})
 

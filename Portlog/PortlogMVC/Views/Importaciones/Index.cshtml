@@ -6,6 +6,8 @@
 
 <h2>Importaciones</h2>
 
+<input type="text" value="@ViewBag.sali" id="depoLink" style="display:none"/>
+
 <form>
     <select class="form-control" id="selectFiltro">
         <option value="Todas" selected> Todas </option>
@@ -85,13 +87,10 @@
                         @Html.ActionLink("Salida de importacion", "SalidaDeImportacion", new { IdImp = item.IdImp, @class = "linkDepo" })
                     }
                 </div>
-</td>
+            </td>
         </tr>
     }
 
 </table>
 
-<script type="text/javascript" >
-    var nombre = $("#selectFiltro").val();
-    alert("dgsdgsdg"+nombre);
-</script>
+

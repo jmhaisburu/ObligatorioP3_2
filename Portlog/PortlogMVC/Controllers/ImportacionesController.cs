@@ -56,7 +56,16 @@ namespace PortlogMVC.Controllers
                     var imports = response.Content.
                     ReadAsAsync<IEnumerable<Models.ImportacionViewModel>>().Result;
                     if (imports != null && imports.Count() > 0)
+                    {
+
+                        if (fechaMenor != null && fechaMenor != "")
+                        {
+                            ViewBag.sali = "si";
+                            
+                        }
+
                         return View("Index", imports.ToList());
+                    }
                     else
                     {
 
