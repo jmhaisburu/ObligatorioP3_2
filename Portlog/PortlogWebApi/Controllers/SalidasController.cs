@@ -60,26 +60,6 @@ namespace PortlogWebApi.Controllers
         }
 
       
-        /*
-            Al utilzar Route Attributes para una de las rutas es necesario definirlo para todas, y se anula
-            el ruteo por convención. 
-            El método PUT deja de hacer coincidir la ruta api/Articulos/5 con el método Put y lo mismo ocurre 
-            con DELETE, obteniéndose
-
-
-         // GET: api/Salidas/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-        // PUT: api/Salidas/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Salidas/5
-        public void Delete(int id)
-        {
-        }*/
+       
     }
 }

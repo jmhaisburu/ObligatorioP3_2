@@ -68,31 +68,6 @@ namespace PortlogWebApi.Controllers
         }
 
 
-        /*
-          // GET: api/Importacion/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [Route("api/clientes")]
-        [HttpPost]
-        public HttpResponseMessage CrearCliente(Cliente cli) 
-	    { ... }
-         
-        // POST: api/Importacion
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Importacion/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Importacion/5
-        public void Delete(int id)
-        {
-        }*/
+        
     }
 }
