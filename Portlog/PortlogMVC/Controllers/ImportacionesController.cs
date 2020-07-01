@@ -15,7 +15,7 @@ namespace PortlogMVC.Controllers
 {
     public class ImportacionesController : Controller
     {
-        private PortlogContext db = new PortlogContext();
+        
 
         private HttpClient cliente = new HttpClient();
         private Uri ImportacionUri = null;
@@ -34,7 +34,7 @@ namespace PortlogMVC.Controllers
         // GET: Importaciones http://localhost:57666/api/Importacion/porCodigoProducto/4
         public ActionResult Index(int? codprod, string texto, string rut, string fechaMenor)
         {
-            if(Session["rol"] != null)
+            if (Session["rol"] != null)
             {
                 if (codprod != null && codprod > 0)
                     response = cliente.GetAsync(ImportacionUri + "/porCodigoProducto/" + codprod).Result;
@@ -61,7 +61,7 @@ namespace PortlogMVC.Controllers
                         if (fechaMenor != null && fechaMenor != "")
                         {
                             ViewBag.sali = "si";
-                            
+
                         }
 
                         return View("Index", imports.ToList());
@@ -82,7 +82,7 @@ namespace PortlogMVC.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
 
         }
 
@@ -119,93 +119,6 @@ namespace PortlogMVC.Controllers
 
         }
 
-        // GET: Importaciones/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Importaciones/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FechaIngreso,SalidaPrevista,Cantidad")] Importacion importacion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Importaciones.Add(importacion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(importacion);
-        }
-
-        // GET: Importaciones/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Importacion importacion = db.Importaciones.Find(id);
-            if (importacion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(importacion);
-        }
-
-        // POST: Importaciones/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FechaIngreso,SalidaPrevista,Cantidad")] Importacion importacion)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(importacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(importacion);
-        }
-
-        // GET: Importaciones/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Importacion importacion = db.Importaciones.Find(id);
-            if (importacion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(importacion);
-        }
-
-        // POST: Importaciones/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Importacion importacion = db.Importaciones.Find(id);
-            db.Importaciones.Remove(importacion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
